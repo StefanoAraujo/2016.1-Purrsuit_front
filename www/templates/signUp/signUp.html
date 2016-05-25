@@ -1,0 +1,29 @@
+<ion-header-bar class="temaPurrsuit" align-title="center">
+    <button class="button button-icon button-clear icon ion-chevron-left" ui-sref="login"></button>
+</ion-header-bar>
+<ion-view>
+  <ion-content class="page">
+		<div class="signupPage">
+			<h2 class="purrTitle">Crie sua conta</h2>
+	    <form ng-submit="signUp(user)">
+	      <div class="list">
+	        <label class="item item-input form">
+	          <input type="text" ng-model="user.name" placeholder="Nome">
+	        </label>
+	        <label class="item item-input form">
+	          <input type="text" ng-model="user.email" placeholder="E-mail">
+	        </label>
+	        <label class="item item-input form">
+	          <input type="password" ng-model="user.password" placeholder="Senha">
+	        </label>
+	        <label class="item item-input form">
+	          <input type="password" ng-model="user.password_confirmation" placeholder="Confirme sua senha">
+	        </label>
+	        <div class="padding">
+	          <button class="button button-block secondColor" type="submit">Criar Conta</button>
+	        </div>
+	      </div>
+	    </form>
+		</div>
+  </ion-content>
+</ion-view>

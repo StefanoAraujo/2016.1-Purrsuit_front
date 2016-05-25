@@ -1,0 +1,25 @@
+<ion-view cache-view="false">
+  <ion-content class="page">
+		<img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xpl1/v/t34.0-12/13101411_1168501766502630_968318762_n.png?oh=4bf8ac04fa6620308b25376c87d648b1&oe=57377E55&__gda__=1463201252_fccc8643cdb0cf39ac15dfeef54a4ff6" class="purrSuitImage" />
+		<h2 class="purrTitle"> PurrSuit </h2>
+    <form ng-submit="signIn(user)">
+      <div class="list">
+        <label class="item item-input form">
+          <span class="input-label">E-mail</span>
+          <input type="text" ng-model="user.email">
+        </label>
+        <label class="item item-input form">
+          <span class="input-label">Senha</span>
+          <input type="password" ng-model="user.password">
+        </label>
+        <div class="loginButton">
+          <button class="button button-block secondColor" type="submit">Entrar</button>
+        </div>
+      </div>
+    </form>
+    <div align="center">
+      <p class="warning">Não possui uma conta?</p>
+      <button class="button button-clear button-light" ui-sref="signup">Crie já a sua!</button>
+    </div>
+  </ion-content>
+</ion-view>

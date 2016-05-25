@@ -1,0 +1,19 @@
+<ion-view view-title="Alterar dados">
+  <ion-content>
+    <form ng-submit="editUser(data)" >
+      <div class="list">
+        <p hidden="true">{{data.id = currentUser.id}}</p>
+        <label class="item item-input">
+          <input type="text" ng-model="data.user.name" placeholder="{{currentUser.name}}">
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="data.user.email" placeholder="{{currentUser.email}}">
+        </label>
+        <label>
+          <button class="button button-block button-positive" type="submit">Salvar</button>
+        </label>
+
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

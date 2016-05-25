@@ -1,0 +1,26 @@
+<ion-view cache-view="false" view-title="Perfil">
+  <ion-content>
+    <div class="list card">
+      <h1 class="item item-icon-left">
+        <i class=" icon ion-person"></i>
+        {{currentUser.name}}
+      </h1>
+      <h2 class="item item-icon-left">
+        <i class="icon ion-email"></i>
+        {{currentUser.email}}
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col col-50">
+        <button class="button button-positive icon ion-edit" ui-sref="app.edituser">
+           Editar Dados
+        </button>
+      </div>
+      <div class="col col-50">
+        <button class="button button-assertive icon ion-close" ng-click = deleteUser(currentUser.id)>
+           Encerrar Conta
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

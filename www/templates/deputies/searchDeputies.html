@@ -1,0 +1,19 @@
+<ion-view>
+	<ion-content>
+	  <div class="list list-inset">
+	    <form ng-submit="doSearch(inputText)">
+	      <label class="item item-input">
+	        <i class="icon ion-search placeholder-icon"></i>
+	        <input ng-model="inputText" type="text" placeholder="Digite aqui quem você deseja buscar...">
+	      </label>
+	    </form>
+	  </div>
+	  <div class="list">
+	    <a collection-repeat="itemDeputy in deputies" href="#/app/deputy/{{itemDeputy.id}}"
+	                  class="item item-avatar">
+	      <img ng-src="{{itemDeputy.image_path}}">
+	      <h2>{{itemDeputy.deputy_name}}</h2>
+	    </a>
+	  </div>
+	</ion-content>
+</ion-view>

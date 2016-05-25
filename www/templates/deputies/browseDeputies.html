@@ -1,0 +1,14 @@
+<ion-view view-title="Deputados">
+  <ion-content>
+    <div class="list">
+      <!--div class="item-divider">
+        Partido X
+      </div-->
+      <a collection-repeat="itemDeputy in deputies" href="#/app/deputy/{{itemDeputy.id}}"
+                    class="item item-avatar">
+        <img ng-src="{{itemDeputy.image_path}}">
+        <h2>{{itemDeputy.deputy_name}}</h2>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

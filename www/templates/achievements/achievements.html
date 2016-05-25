@@ -1,0 +1,11 @@
+<ion-view view-title="Todas os Achievements">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-icon-left" ng-repeat="itemAchievement in achievements"
+                href="#/app/achievements/{{itemAchievement.id}}">
+        <i class="icon ion-ribbon-b"> </i>
+        {{itemAchievement.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
