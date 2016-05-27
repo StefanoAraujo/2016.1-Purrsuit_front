@@ -46,7 +46,7 @@ angular.module('starter')
       function(data) {
         console.log("SERVICES: Getting Deputies with text(" + inputText + ") data from server...")
 
-        if (data.deputy.lenght === 0) {
+        if (data.deputies.length === 0) {
           console.log("Services: Search returned no Deputy")
         }
         else {
