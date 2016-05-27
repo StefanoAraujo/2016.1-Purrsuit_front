@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('DeputiesCtrl', function($scope, ServerDeputies) {
   ServerDeputies.get(function(data) {
       console.log("SERVICES: Getting Deputies data from server...")
-      $scope.deputies = data.deputy;
+      $scope.deputies = data.deputies;
     },
     function(error) {
       alert("Não foi possível estabelecer conexão com o servidor...");
@@ -46,11 +46,11 @@ angular.module('starter')
       function(data) {
         console.log("SERVICES: Getting Deputies with text(" + inputText + ") data from server...")
 
-        if (data.deputy.lenght === 0) {
+        if (data.deputies.length === 0) {
           console.log("Services: Search returned no Deputy")
         }
         else {
-          $scope.deputies = data.deputy;
+          $scope.deputies = data.deputies;
         }
       },
       function(error) {

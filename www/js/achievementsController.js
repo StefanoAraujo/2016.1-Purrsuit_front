@@ -3,7 +3,7 @@ angular.module('starter')
 .controller('AchievementsCtrl', function($scope, ServerAchievements){
   ServerAchievements.get(function(data){
     console.log("SERVICES: Getting achievements data from server...");
-    $scope.achievements = data.achievement;
+    $scope.achievements = data.achievements;
   },
   function(error){
     alert("Não foi possível estabelecer conexão com o servidor...");

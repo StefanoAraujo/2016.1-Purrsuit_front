@@ -4,7 +4,7 @@ angular.module('starter')
 .controller('QuestsCtrl', function($scope, ServerQuests) {
   ServerQuests.get(function(data) {
       console.log("SERVICES: Getting Quests data from server...");
-      $scope.quests = data.quest;
+      $scope.quests = data.quests;
     },
     function(error) {
       alert("Não foi possível estabelecer conexão com o servidor...");
