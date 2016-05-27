@@ -9,7 +9,7 @@ angular.module('starter')
       },
       function(data) {
         console.log("SERVICES: Getting deputy's Uf with Id(" + local_uf_id + ") data from server...")
-        $scope.deputyUf = data.uf;
+        $scope.deputyUf = data.ufs;
       },
       function(error) {
         console.log("SERVICES: Could not get deputy's Uf with Id(" + local_uf_id + ")");
@@ -26,7 +26,7 @@ angular.module('starter')
       },
       function(data) {
         console.log("SERVICES: Getting deputy's party with Id(" + local_party_id + ") data from server...")
-        $scope.deputyParty = data.party;
+        $scope.deputyParty = data.parties;
       },
       function(error) {
         console.log("SERVICES: Could not get deputy's party with Id(" + local_party_id + ")...");
