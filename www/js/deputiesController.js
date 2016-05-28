@@ -1,6 +1,7 @@
 angular.module('starter')
 
-.controller('DeputiesCtrl',function($scope, $stateParams, ServerDeputies, ServerFindDeputy,
+.controller('DeputiesCtrl',['$scope','$stateParams','ServerDeputies','ServerFindDeputy','ServerSearchDeputies',
+'ServerUf','ServerParty',function($scope, $stateParams, ServerDeputies, ServerFindDeputy,
   ServerSearchDeputies, ServerUf, ServerParty) {
 
   $scope.getDeputies = function() {
@@ -91,4 +92,4 @@ angular.module('starter')
     }
   }
 
-})
+}])

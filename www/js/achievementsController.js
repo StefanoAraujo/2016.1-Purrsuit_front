@@ -1,6 +1,7 @@
 angular.module('starter')
 
-.controller('AchievementsCtrl', function($scope, $stateParams, ServerAchievements, ServerFindAchv){
+.controller('AchievementsCtrl', ['$scope','$stateParams','ServerAchievements', 'ServerFindAchv',
+function($scope, $stateParams, ServerAchievements, ServerFindAchv){
 
   $scope.getAchievements =  function () {
     ServerAchievements.get(function(data){
@@ -25,4 +26,4 @@ angular.module('starter')
       console.log("SERVICES: ERROR in getting Achievement (Id: " + searchId + ") data from server...");
     })
   }
-})
+}])

@@ -1,7 +1,8 @@
 angular.module('starter')
 
 // ALL -- Quests controller
-.controller('QuestsCtrl', function($scope, $stateParams, ServerQuests, ServerFindQuest) {
+.controller('QuestsCtrl',['$scope','$stateParams','ServerQuests','ServerFindQuest',
+function($scope, $stateParams, ServerQuests, ServerFindQuest) {
 
   $scope.getQuests = function () {
     ServerQuests.get(function(data) {
@@ -26,4 +27,4 @@ angular.module('starter')
     })
   }
 
-})
+}])
