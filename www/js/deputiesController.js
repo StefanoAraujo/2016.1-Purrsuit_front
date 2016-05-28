@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('DeputiesCtrl',function($scope, ServerDeputies) {
+.controller('DeputiesCtrl',function($scope, $stateParams, ServerDeputies, ServerFindDeputy) {
 
   $scope.getDeputies = function() {
     ServerDeputies.get(function(data) {
@@ -12,8 +12,23 @@ angular.module('starter')
       console.log("SERVICES: ERROR in getting Deputies data from server...");
     })
   }
-  
 
+  $scope.findDeputy = function () {
+
+    var findId = $stateParams.deputyId;
+    ServerFindDeputy.get({
+        id: findId
+      },
+      function(data) {
+        console.log("SERVICES: Getting Deputy (Id: " + findId + ") data from server...");
+        $scope.deputy = data.deputy;
+      },
+      function(error) {
+        alert("Não foi possível estabelecer conexão com o servidor...");
+        console.log("SERVICES: ERROR in getting Deputy (Id: " + findId + ") data from server...");
+      }
+    )
+  }
 
 
 
@@ -21,28 +36,6 @@ angular.module('starter')
 
 })
 
-.controller('DeputyCtrl', function($scope, $stateParams, ServerFindDeputy) {
-  var findId = $stateParams.deputyId;
-
-  ServerFindDeputy.get({
-      id: findId
-    },
-    function(data) {
-      console.log("SERVICES: Getting Deputy (Id: " + findId + ") data from server...");
-      $scope.deputy = data.deputy;
-
-      /* Enable use when using deputyDetailsController.js and deputy.html */
-      /*var deputy_uf_id = $scope.deputy.uf_id;
-      var deputy_party_id = $scope.deputy.party_id;
-      localStorage.setItem("DeputyUfId", deputy_uf_id);
-      localStorage.setItem("DeputyPartyId", deputy_party_id);*/
-    },
-    function(error) {
-      alert("Não foi possível estabelecer conexão com o servidor...");
-      console.log("SERVICES: ERROR in getting Deputy (Id: " + findId + ") data from server...");
-    }
-  )
-})
 
 .controller('SearchDeputiesCtrl', function($scope, ServerSearchDeputies) {
   $scope.doSearch = function(inputText) {
