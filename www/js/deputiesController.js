@@ -1,6 +1,7 @@
 angular.module('starter')
 
-.controller('DeputiesCtrl',function($scope, $stateParams, ServerDeputies, ServerFindDeputy, ServerSearchDeputies) {
+.controller('DeputiesCtrl',function($scope, $stateParams, ServerDeputies, ServerFindDeputy,
+  ServerSearchDeputies, ServerUf, ServerParty) {
 
   $scope.getDeputies = function() {
     ServerDeputies.get(function(data) {
@@ -55,5 +56,39 @@ angular.module('starter')
         })
     }
   }
-  
+
+  $scope.getDeputyUf = function () {
+    var local_uf_id = localStorage.getItem("DeputyUfId");
+
+    $scope.getUf = function() {
+      ServerUf.get({
+          ufId: local_uf_id
+        },
+        function(data) {
+          console.log("SERVICES: Getting deputy's Uf with Id(" + local_uf_id + ") data from server...")
+          $scope.deputyUf = data.ufs;
+        },
+        function(error) {
+          console.log("SERVICES: Could not get deputy's Uf with Id(" + local_uf_id + ")");
+        })
+    }
+  }
+
+  $scope.getDeputyParty = function () {
+    var local_party_id = localStorage.getItem("DeputyPartyId");
+
+    $scope.getParty = function() {
+      ServerParty.get({
+          partyId: local_party_id
+        },
+        function(data) {
+          console.log("SERVICES: Getting deputy's party with Id(" + local_party_id + ") data from server...")
+          $scope.deputyParty = data.parties;
+        },
+        function(error) {
+          console.log("SERVICES: Could not get deputy's party with Id(" + local_party_id + ")...");
+        })
+    }
+  }
+
 })
