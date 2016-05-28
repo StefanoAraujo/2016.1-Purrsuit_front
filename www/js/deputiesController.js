@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('DeputiesCtrl',function($scope, $stateParams, ServerDeputies, ServerFindDeputy) {
+.controller('DeputiesCtrl',function($scope, $stateParams, ServerDeputies, ServerFindDeputy, ServerSearchDeputies) {
 
   $scope.getDeputies = function() {
     ServerDeputies.get(function(data) {
@@ -30,35 +30,30 @@ angular.module('starter')
     )
   }
 
+  $scope.searchDeputies = function () {
+    $scope.doSearch = function(inputText) {
+      $scope.deputies = [];
 
+      //console.log(inputText.lenght);
 
+      ServerSearchDeputies.get({
+          toSearch: inputText
+        },
+        function(data) {
+          console.log("SERVICES: Getting Deputies with text(" + inputText + ") data from server...")
 
-
-})
-
-
-.controller('SearchDeputiesCtrl', function($scope, ServerSearchDeputies) {
-  $scope.doSearch = function(inputText) {
-    $scope.deputies = [];
-
-    //console.log(inputText.lenght);
-
-    ServerSearchDeputies.get({
-        toSearch: inputText
-      },
-      function(data) {
-        console.log("SERVICES: Getting Deputies with text(" + inputText + ") data from server...")
-
-        if (data.deputies.length === 0) {
-          console.log("Services: Search returned no Deputy")
-        }
-        else {
-          $scope.deputies = data.deputies;
-        }
-      },
-      function(error) {
-        alert("Não foi possível estabelecer conexão com o servidor...");
-        console.log("SERVICES: ERROR in getting Deputies with text(" + inputText + ") data from server...");
-      })
+          if (data.deputies.length === 0) {
+            console.log("Services: Search returned no Deputy")
+          }
+          else {
+            $scope.deputies = data.deputies;
+          }
+        },
+        function(error) {
+          alert("Não foi possível estabelecer conexão com o servidor...");
+          console.log("SERVICES: ERROR in getting Deputies with text(" + inputText + ") data from server...");
+        })
+    }
   }
+  
 })

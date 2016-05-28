@@ -153,7 +153,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'templates/deputies/searchDeputies.html',
-        controller: 'SearchDeputiesCtrl'
+        controller: 'DeputiesCtrl'
       }
     }
   })
