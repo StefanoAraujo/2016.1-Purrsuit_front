@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-  - '5.8'
+- '5.8'
 env:
   global:
-    secure: PHESHNcZauyUCRcLvEnr/2sArQIvpYaF9F9yez2nS6rygUBL8LOwphLOIwdRp6kXMn99+qpr24HNQT4NNNt75D5IYu99TqEKJmONIjkOJwwc3GFhyIHU+4ootWPeNgdM9fN74I5SeTBKsHuJW39HGLzo8Erjq86esZ8iF5j/Aw719hIYinW3uykjy+oYmulxb1TGLHLT1qqkvgC5oP3/YH4cc3slOHePTqucczKFqp6XHxULoQ3iClsTbayvFZFmeUVE3aXYIIH/aXx8+tzGImbOa8TCetXOCoT035vgUK2OPUF2stF+PzXO9C8SZaVm+6C6dMGz0l9pkk+6XYKBbhf/EEiU3bGY69SokFLC5hgOOVyUAl23FAqtHJMPP6GBv9h7y4Y055q5z/Drd7QZoX7C3bvoIh4Rxld2nq67iZHAhIPdeonz5jsxXk812Woq8PCJtc9j+T/dw08//HLPJp2bUGCgENNfvoPxD6zaDgcVtul8EMAMNFuXOJSXr4/+j8YLLVhGM19PPHNm6JR+HCSR+qx4km/KMWGou1b3eIwXkotKljt/0YDc3kdlokSEfbKDqc639R2g+QKXVabiXfwSkaeF4v/7JWxvCVjJP+pciB/CSZ/VknGIS7l5ROW565IO5n2RN95B853qxmOLbkpyTRahBvMbVE8m96H2i80=
+  - secure: SiVM06SQQXT5xSgISYoVotxQZqTPZ8AL6kegcxDytIMsz8+chPLCpeoFQruFBynm4etuAjDaUK9W7aY+7+0wRULu6PpB1R9kzETmh35zTEQBi36eYc+QMNr0uR7lS2ZkBELfd7lcBoN65PbMAY7qq7NxSwn5ho7pAlp9FfYvXR2ZSwaJz+ijlm/kgFvh6J/low0yU0svDCZmwd6plwiKkE5igsdvsykK6WfWuxpfxoSsHhfmzU8Vo5ZxXTLrViZk31d52+PaOCNNihrK+bsw9bgydOSWT+XAA2NNpciNOZLeDMRwgH71zxJbD+HsspzLf5P4CrIo4tX3VH/UPw9+rcQdYkFopbeM+BrJpnH5lTfzJNRQH2zRVZT2ua6Dp33VTr8hZl2AXp8BGtAlf34EiEYjBAvUp7JNanFKD0h8MavY5rX2p0kAd48UAFUrpsMV+3xJndBC8BT84+yIYvIhSU/euWTRyy+eepE/PkwrYhXRD1AC61YGgRu4lRxMiC5UmWimgGKrQ8mt7/4Jy03PP7BZIjtVxwitnmPFfRq8bcw/AcTuenG7O/xfO7aDG3fDRILN09kyBoBZz2seNNAYIqpl1OBORiS5kN/090Kt5xlhLIeVyRlediHFUnqkallw/atnOOqYf7nFUMkbXnkRtZnCukG1+CPj2DEmYwjKCZ4=
 after_success:
-  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
-  - "chmod a+x /tmp/travis-automerge"
-  - "BRANCHES_TO_MERGE_REGEX='^issue#' BRANCH_TO_MERGE_INTO=desenvolvimento GITHUB_REPO=PurrSuit/frontend_purrsuit /tmp/travis-automerge"
+- curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge
+- chmod a+x /tmp/travis-automerge
+- BRANCHES_TO_MERGE_REGEX='^issue#' BRANCH_TO_MERGE_INTO=desenvolvimento GITHUB_REPO=PurrSuit/frontend_purrsuit
+  /tmp/travis-automerge
