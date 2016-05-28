@@ -14,7 +14,7 @@ angular.module('starter')
     })
   }
 
-  $scope.findDeputy = function () {
+  $scope.singleDeputy = function () {
 
     var findId = $stateParams.deputyId;
     ServerFindDeputy.get({

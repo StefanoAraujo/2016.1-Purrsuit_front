@@ -13,7 +13,7 @@ angular.module('starter')
         console.log("SERVICES: ERROR in getting Quests data from server...");
       });
   }
-  $scope.findQuest = function() {
+  $scope.singleQuest = function() {
     var searchId = $stateParams.questId;
 
     ServerFindQuest.get({id: searchId}, function(data){
