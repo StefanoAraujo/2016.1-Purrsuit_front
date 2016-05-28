@@ -1,6 +1,8 @@
 angular.module('starter')
 
-.controller('UserCtrl', function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory, DeleteUser) {
+.controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
+'LogInFactory','EditUser','LogOutFactory','DeleteUser',function($scope, $rootScope,
+   $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory, DeleteUser) {
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
@@ -104,4 +106,4 @@ angular.module('starter')
       })
   }
   $scope.currentUser = $rootScope.user;
-})
+}])

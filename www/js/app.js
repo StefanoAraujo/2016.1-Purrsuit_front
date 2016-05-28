@@ -41,7 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'templates/quests/quest.html',
-        controller: 'QuestCtrl'
+        controller: 'QuestsCtrl'
       }
     }
   })
@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'templates/achievements/singleAchievement.html',
-        controller: 'SingleACHV'
+        controller: 'AchievementsCtrl'
       }
     }
   })
@@ -143,7 +143,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'templates/deputies/deputy.html',
-        controller: 'DeputyCtrl'
+        controller: 'DeputiesCtrl'
       }
     }
   })
@@ -153,7 +153,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'templates/deputies/searchDeputies.html',
-        controller: 'SearchDeputiesCtrl'
+        controller: 'DeputiesCtrl'
       }
     }
   })
