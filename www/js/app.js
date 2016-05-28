@@ -41,7 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'templates/quests/quest.html',
-        controller: 'QuestCtrl'
+        controller: 'QuestsCtrl'
       }
     }
   })
@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'templates/achievements/singleAchievement.html',
-        controller: 'SingleACHV'
+        controller: 'AchievementsCtrl'
       }
     }
   })
