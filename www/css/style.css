@@ -1,7 +1,12 @@
 /* Empty. Add your own CSS if you like */
 .loginButton{
 	padding: 17px;
-	margin-top: -17px;	
+	margin-top: -17px;
+}
+
+.logoutButton{
+	background-color: #FF5252;
+
 }
 .popup-buttons .button {
 	background-color: #FF5252;
@@ -48,7 +53,7 @@
 .secondColor{
 	background-color: #FF5252;
 	color: white;
-	
+
 }
 
 .temaPurrsuit{
