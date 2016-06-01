@@ -6,8 +6,10 @@
 
 .logoutButton{
 	background-color: #FF5252;
-
+	margin-left: 57px;
+	margin-top: 40px;
 }
+
 .popup-buttons .button {
 	background-color: #FF5252;
 }
