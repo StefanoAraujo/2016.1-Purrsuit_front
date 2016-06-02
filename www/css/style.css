@@ -6,7 +6,13 @@
 
 .acessButton{
 	padding: 17px;
-	margin-top: -10px;
+	margin-top: -45px;
+}
+
+.logoutButton{
+	background-color: #FF5252;
+	margin-left: 57px;
+	margin-top: 40px;
 }
 
 .popup-buttons .button {
@@ -56,6 +62,10 @@
 	color: white;
 }
 
+.dark-primary-color{
+	background-color: #455A64;
+	color: white;
+}
 
 
 .temaPurrsuit{

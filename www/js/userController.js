@@ -39,19 +39,15 @@ angular.module('starter')
   }
 
   //Log out
+  // Verificar a necessidade de usar a SESSION!!!
   $scope.logOut = function(){
-    console.log($scope.currentUser.id)
     var userId = $scope.currentUser.id;
-    LogOutFactory.get(userId, function(userId) {
-      $state.go('login');
 
-    }, function(error) {
-      console.log("Log out error!");
-      $ionicPopup.alert({
-        title: 'Erro',
-        template: 'Não foi possível se desconectar!'
-      });
-    })
+    console.log("LOGOUT: User (id: " + userId + ")...");
+    console.log("LOGOUT: Cleaning user session data...");
+
+    $rootScope.user = {};
+    $state.go('login');
   }
 
   //Edit
