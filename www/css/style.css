@@ -1,8 +1,14 @@
 /* Empty. Add your own CSS if you like */
 .loginButton{
 	padding: 17px;
-	margin-top: -17px;	
+	margin-top: -17px;
 }
+
+.acessButton{
+	padding: 17px;
+	margin-top: -10px;
+}
+
 .popup-buttons .button {
 	background-color: #FF5252;
 }
@@ -48,8 +54,9 @@
 .secondColor{
 	background-color: #FF5252;
 	color: white;
-	
 }
+
+
 
 .temaPurrsuit{
 	background-color: #607D8B;

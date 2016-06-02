@@ -32,8 +32,8 @@ angular.module('starter')
     }, function(error) {
       console.log(error);
       $ionicPopup.alert({
-        title: 'Erro',
-        template: 'Falha no login'
+        title: 'Oops!',
+        template: 'O email ou a senha estão incorretos.\nPor favor, tente novamente!'
       });
     });
   }
