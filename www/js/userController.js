@@ -27,17 +27,18 @@ angular.module('starter')
     LogInFactory.get(data, function(data) {
       console.log(data);
       updateCurrentUser(data.user);
-      $state.go('app.userprofile')
+      $rootScope.logged = true;
+      console.log($scope.logged);
+      $state.go('app.browseDeputies')
 
     }, function(error) {
       console.log(error);
       $ionicPopup.alert({
         title: 'Oops!',
-        template: 'O email ou a senha estão incorretos.\nPor favor, tente novamente!'
+        template: 'O email e/ou a senha estão incorretos.\nPor favor, tente novamente!'
       });
     });
   }
-
   //Log out
   // Verificar a necessidade de usar a SESSION!!!
   $scope.logOut = function(){
@@ -47,7 +48,10 @@ angular.module('starter')
     console.log("LOGOUT: Cleaning user session data...");
 
     $rootScope.user = {};
-    $state.go('login');
+
+    $rootScope.logged = false;
+
+    $state.go('index');
   }
 
   //Edit

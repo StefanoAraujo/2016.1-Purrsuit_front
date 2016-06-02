@@ -13,7 +13,7 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-content class="sideMenu">
+    <ion-content class="sideMenu" ng-controller="UserCtrl">
       <ion-list>
 
         <img class="full-image" src="img/sideMenuHeader.png" />
@@ -26,24 +26,27 @@
         <a menu-close class="item item-icon-left" href="#/app/browseDeputies">
           <i class="icon ion-person-stalker"></i> Deputados
         </a>
-        <div class="item item-divider">
+        <div class="item item-divider" ng-if="logged">
           Conquistas
         </div>
-        <a menu-close class="item item-icon-left" href="#/app/quests">
+        <a menu-close class="item item-icon-left" href="#/app/quests" ng-if="logged">
           <i class="icon ion-ios-game-controller-b"></i> Quests
         </a>
-        <a menu-close class="item item-icon-left" href="#/app/achievements">
+        <a menu-close class="item item-icon-left" href="#/app/achievements" ng-if="logged">
           <i class="icon ion-trophy"></i> Achievements
         </a>
-        <div class="item item-divider">
+        <div class="item item-divider" ng-if="logged">
           Outros
         </div>
-        <a menu-close class="item item-icon-left" ui-sref="app.userprofile">
+        <a menu-close class="item item-icon-left" ui-sref="app.userprofile" ng-if="logged">
           <i class="icon ion-person"></i> Perfil
         </a>
       </ion-list>
-      <button class="button icon-left ion-power logoutButton" ng-controller="UserCtrl" ng-click="logOut()">
-        Sair do app
+      <button class="button icon-left ion-power logoutButton" ng-click="logOut()" ng-show="logged">
+        Sair
+      </button>
+      <button class ="button icon-left ion-chevron-left logoutButton" ng-hide="logged" ui-sref="index">
+        Voltar
       </button>
 
     </ion-content>

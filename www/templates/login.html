@@ -5,16 +5,29 @@
   <ion-content class="page">
 		<img src="img/PurrsuitPersonagem.png" class="purrSuitImage" />
 		<h2 class="purrTitle"> PurrSuit </h2>
-    <form ng-submit="signIn(user)">
+    <form name="myForm" ng-submit="signIn(user)">
       <div class="list">
         <label class="item item-input form">
           <span class="input-label">E-mail</span>
-          <input type="text" ng-model="user.email">
+          <input type="email" name="username" ng-model="user.email" required="" />
         </label>
+        <div class="warningLogin" ng-show="myForm.$submitted || myForm.username.$touched">
+          <span ng-show="myForm.username.$error.required">
+            <i class="icon icon ion-alert-circled"> </i>É necessário inserir seu e-mail!
+          </span>
+          <span ng-show="myForm.username.$error.email">
+            <i class="icon icon ion-alert-circled"> </i>É necessário digitar um e-mail válido!
+          </span>
+        </div>
         <label class="item item-input form">
           <span class="input-label">Senha</span>
-          <input type="password" ng-model="user.password">
+          <input type="password" name="password" ng-model="user.password" required />
         </label>
+        <div class="warningLogin" ng-show="myForm.$submitted || myForm.password.$touched">
+          <span ng-show="myForm.password.$error.required">
+            <i class="icon icon ion-alert-circled"> </i>Insira sua senha!
+          </span>
+        </div>
         <div class="loginButton">
           <button class="button button-block secondColor" type="submit">Entrar</button>
         </div>
