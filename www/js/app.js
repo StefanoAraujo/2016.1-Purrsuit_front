@@ -79,6 +79,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     }
   })
 
+  //Index
+  .state('index', {
+    url: "/index",
+    templateUrl: "templates/mainPage.html"
+  })
+
   //Log In
   .state('login', {
     url: "/login",
@@ -159,5 +165,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
   })
 
   // Deputys view is 'browseDeputies'
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/index');
 });

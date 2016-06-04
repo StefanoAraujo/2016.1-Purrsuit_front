@@ -1,35 +1,60 @@
 <ion-view>
-  <ion-content>
-    <div class="list card" ng-controller = "singleDeputy">
-      <div class="item item-thumbnail-left">
-        <img ng-src="{{deputy.image_path}}">
-        <h2><strong>Nome: </strong>{{deputy.deputy_name}}</h2>
-
-        <!-- Priority problem down below - AngularJS Directives-->
-        <!--h3 ng-controller="GetDeputyParty" ng-init="getParty()">
-          <strong>Partido: </strong>
-            {{deputyParty.name}}
-        </h3>
-        <h3 ng-controller="GetDeputyUf" ng-init="getUf()"><strong>UF:</strong>
-           {{deputyUf.initials}}
-        </h3-->
+	<div>
+    <div class="deputyPerfil"></div>
+    <img class="deputyImage" src="{{deputy.image_path}}"/>
+		<button class="button button-balanced follow-button icon ion-person-add">
+			Seguir
+		</button>
+		<h2 class="deputy-name"> {{deputy.deputy_name}} </h2>
+	</div>
+  <ion-content class="attributes" scroll="true" ng-controller="singleDeputy">
+		<div class="card">
+		  <div class="item item-divider">
+		    Nome completo
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{deputy.name}}
+		  </div>
+		</div>
+    <div class="card">
+      <div class="item item-divider">
+        Partido
+      </div>
+      <div class="item item-text-wrap">
+        {{deputy.party.name}}
       </div>
     </div>
-
-    <div class="item item-text-wrap">
-      <strong>Nome Completo:</strong> {{deputy.name}}
+    <div class="card">
+      <div class="item item-divider">
+        Unidade Federativa
+      </div>
+      <div class="item item-text-wrap">
+        {{deputy.uf.name}}
+      </div>
     </div>
-
-    <div class="item item-text-wrap">
-      <strong>Registro:</strong> {{deputy.registration}}
+    <div class="card">
+      <div class="item item-divider">
+        E-mail
+      </div>
+      <div class="item item-text-wrap">
+        {{deputy.email}}
+      </div>
     </div>
-
-    <div class="item item-text-wrap">
-      <strong>Situaçao:</strong> {{deputy.legislation_situation}}
+    <div class="card">
+      <div class="item item-divider">
+        Situação
+      </div>
+      <div class="item item-text-wrap">
+        {{deputy.legislation_situation}}
+      </div>
     </div>
-
-    <div class="item item-text-wrap">
-      <strong>Email:</strong> {{deputy.email}}
+    <div class="card">
+      <div class="item item-divider">
+				Registro
+      </div>
+      <div class="item item-text-wrap">
+        {{deputy.registration}}
+      </div>
     </div>
   </ion-content>
 </ion-view>

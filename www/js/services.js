@@ -2,7 +2,7 @@ angular.module('starter.services', ['ngResource'])
 
 
 .factory('LogInFactory', function($resource) {
-  return $resource('http://localhost:3000/login/signin')
+  return $resource('http://localhost:3000/signIn')
 })
 
 .factory('SignUp', function($resource) {
