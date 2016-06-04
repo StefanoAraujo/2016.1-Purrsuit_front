@@ -41,9 +41,9 @@ angular.module('starter')
   //Log out
   // Verificar a necessidade de usar a SESSION!!!
   $scope.logOut = function(){
-    var userId = $scope.currentUser.id;
-
-    console.log("LOGOUT: User (id: " + userId + ")...");
+    // ONLY WORKS IF USER IS CONNECTED
+    /*var userId = $scope.currentUser.id;
+    console.log("LOGOUT: User (id: " + userId + ")...");*/
     console.log("LOGOUT: Cleaning user session data...");
 
     $rootScope.user = {};
