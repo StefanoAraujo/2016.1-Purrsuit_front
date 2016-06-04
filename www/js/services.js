@@ -2,7 +2,7 @@ angular.module('starter.services', ['ngResource'])
 
 
 .factory('LogInFactory', function($resource) {
-  return $resource('http://localhost:3000/login/signin')
+  return $resource('http://localhost:3000/signIn')
 })
 
 .factory('SignUp', function($resource) {
@@ -19,6 +19,12 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('DeleteUser', function($resource) {
   return $resource('http://localhost:3000/users/delete/:id')
+})
+
+.factory('FollowedDeputies', function($resource) {
+  return $resource('http://localhost:3000/users/:id/followed_deputies', {
+    id: "@id"
+  })
 })
 
 .factory('ServerDeputies', function($resource){

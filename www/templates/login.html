@@ -1,17 +1,37 @@
+<ion-header-bar class="temaPurrsuit" align-title="center">
+    <button class="button button-icon button-clear icon ion-chevron-left" ui-sref="index"></button>
+</ion-header-bar>
 <ion-view cache-view="false">
   <ion-content class="page">
-		<img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xpl1/v/t34.0-12/13101411_1168501766502630_968318762_n.png?oh=4bf8ac04fa6620308b25376c87d648b1&oe=57377E55&__gda__=1463201252_fccc8643cdb0cf39ac15dfeef54a4ff6" class="purrSuitImage" />
+		<img src="img/PurrsuitPersonagem.png" class="purrSuitImage" />
+
 		<h2 class="purrTitle"> PurrSuit </h2>
-    <form ng-submit="signIn(user)">
+
+
+    <form name="myForm" ng-submit="signIn(user)">
+
       <div class="list">
         <label class="item item-input form">
           <span class="input-label">E-mail</span>
-          <input type="text" ng-model="user.email">
+          <input type="email" name="username" ng-model="user.email" required="" />
         </label>
+        <div class="warningLogin" ng-show="myForm.$submitted || myForm.username.$touched">
+          <span ng-show="myForm.username.$error.required">
+            <i class="icon icon ion-alert-circled"> </i>É necessário inserir seu e-mail!
+          </span>
+          <span ng-show="myForm.username.$error.email">
+            <i class="icon icon ion-alert-circled"> </i>É necessário digitar um e-mail válido!
+          </span>
+        </div>
         <label class="item item-input form">
           <span class="input-label">Senha</span>
-          <input type="password" ng-model="user.password">
+          <input type="password" name="password" ng-model="user.password" required />
         </label>
+        <div class="warningLogin" ng-show="myForm.$submitted || myForm.password.$touched">
+          <span ng-show="myForm.password.$error.required">
+            <i class="icon icon ion-alert-circled"> </i>Insira sua senha!
+          </span>
+        </div>
         <div class="loginButton">
           <button class="button button-block secondColor" type="submit">Entrar</button>
         </div>
