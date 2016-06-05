@@ -1,0 +1,12 @@
+<ion-view view-title="Deputados">
+  <ion-content>
+    <div class="list" ng-controller = "followedDeputies">
+      <a collection-repeat="itemDeputy in followed" href="#/app/deputy/{{itemDeputy.id}}"
+                    class="item item-avatar">
+        <img ng-src="{{itemDeputy.image_path}}">
+        <h2>{{itemDeputy.deputy_name}}</h2>
+      </a>
+
+    </div>
+  </ion-content>
+</ion-view>
