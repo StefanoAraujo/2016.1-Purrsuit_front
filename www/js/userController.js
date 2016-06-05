@@ -106,4 +106,20 @@ angular.module('starter')
       })
   }
   $scope.currentUser = $rootScope.user;
+
+  $scope.followedDeputies = function () {
+
+    var userId = $scope.currentUser.id;
+    FollowedDeputies.get({
+        id: userId
+      },
+      function(data) {
+        console.log("SERVICES: Getting Followed Deputies from server");
+        $scope.followed = data.deputies;
+      },
+      function(error) {
+        alert("Não foi possível estabelecer conexão com o servidor...");
+      }
+    )
+  }
 }])
