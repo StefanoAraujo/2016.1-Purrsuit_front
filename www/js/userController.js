@@ -1,8 +1,8 @@
 angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
-'LogInFactory','EditUser','LogOutFactory','DeleteUser',function($scope, $rootScope,
-   $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory, DeleteUser) {
+'LogInFactory','EditUser','LogOutFactory','DeleteUser','FollowedDeputies',function($scope, $rootScope,
+   $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory, DeleteUser,FollowedDeputies) {
   //Sign up
   $scope.signUp = function(user){
     console.log(user);

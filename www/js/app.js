@@ -79,6 +79,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     }
   })
 
+  .state('app.followedDeputies', {
+    url: "/followedDeputies",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/followedDeputies.html",
+        controller: 'UserCtrl'
+      }
+    }
+  })
+
   //Index
   .state('index', {
     url: "/index",
