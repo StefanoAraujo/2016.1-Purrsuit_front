@@ -1,8 +1,9 @@
 angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
-'LogInFactory','EditUser','LogOutFactory','DeleteUser','FollowedDeputies',function($scope, $rootScope,
-   $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory, DeleteUser,FollowedDeputies) {
+'LogInFactory','EditUser','LogOutFactory','DeleteUser','FollowedDeputies','FollowDeputy','UnfollowDeputy',
+function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory,
+  DeleteUser, FollowedDeputies, FollowDeputy, UnfollowDeputy) {
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
@@ -109,9 +110,8 @@ angular.module('starter')
 
   $scope.followedDeputies = function () {
 
-    var userId = $scope.currentUser.id;
     FollowedDeputies.get({
-        id: userId
+        id: $scope.currentUser.id
       },
       function(data) {
         console.log("SERVICES: Getting Followed Deputies from server");
@@ -122,4 +122,30 @@ angular.module('starter')
       }
     )
   }
+
+  $scope.followDeputy = function(deputyId) {
+      var userId = $scope.currentUser.id;
+      var data = {deputyId, userId, id: userId};
+      FollowDeputy.save(data, function(data) {
+        console.log("Deputy followed!");
+      },
+      function(error){
+        console.log("Não foi possível seguir este deputado!");
+      }
+    )
+  }
+
+  $scope.unfollowDeputy = function(deputyId) {
+      var userId = $scope.currentUser.id;
+      var data = {deputyId, userId, id: userId};
+      UnfollowDeputy.save(data, function(data) {
+        console.log("Deputy unfollowed!");
+      },
+      function(error){
+        console.log("Não foi possível deixar de seguir este deputado!");
+      }
+    )
+  }
+
+
 }])
