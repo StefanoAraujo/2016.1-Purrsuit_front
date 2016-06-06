@@ -21,6 +21,19 @@ angular.module('starter.services', ['ngResource'])
   return $resource('http://localhost:3000/users/delete/:id')
 })
 
+.factory('FollowDeputy', function($resource) {
+  return $resource('http://localhost:3000/users/:id/follow_deputy', {
+    id: "@id"
+  })
+})
+
+.factory('UnfollowDeputy', function($resource) {
+  return $resource('http://localhost:3000/users/:id/unfollow_deputy', {
+    id: "@id"
+  })
+})
+
+
 .factory('FollowedDeputies', function($resource) {
   return $resource('http://localhost:3000/users/:id/followed_deputies', {
     id: "@id"
