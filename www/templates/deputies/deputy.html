@@ -1,9 +1,12 @@
-<ion-view>
-	<div>
+<ion-view cache-view = "false">
+	<div ng-controller="UserCtrl">
     <div class="deputyPerfil"></div>
     <img class="deputyImage" src="{{deputy.image_path}}"/>
-		<button class="button button-balanced follow-button icon ion-person-add">
+		<button class="button button-balanced follow-button icon ion-person-add" ng-click=followDeputy(deputy.id)>
 			Seguir
+		</button>
+		<button class="button button-assertive follow-button icon ion-sad" ng-click=unfollowDeputy(deputy.id)>
+			Deixar de Seguir
 		</button>
 		<h2 class="deputy-name"> {{deputy.deputy_name}} </h2>
 	</div>
