@@ -128,6 +128,8 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser
       var data = {deputyId, userId, id: userId};
       FollowDeputy.save(data, function(data) {
         console.log("Deputy followed!");
+        $rootScope.isFollowed = true;
+        $state.reload();
       },
       function(error){
         console.log("Não foi possível seguir este deputado!");
@@ -140,6 +142,8 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser
       var data = {deputyId, userId, id: userId};
       UnfollowDeputy.save(data, function(data) {
         console.log("Deputy unfollowed!");
+        $rootScope.isFollowed = false;
+        $state.reload();
       },
       function(error){
         console.log("Não foi possível deixar de seguir este deputado!");
@@ -147,5 +151,27 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser
     )
   }
 
+  $scope.following = function (deputyId) {
+    FollowedDeputies.get({
+      id: $scope.currentUser.id
+    },
+      function(data) {
+        console.log("SERVICES: Getting Followed Deputies from server");
+        $scope.followed = data.deputies;
+        $rootScope.isFollowed = false;
+        for (var i in $scope.followed) {
+          console.log(deputyId);
+          console.log($scope.followed[i].id);
+          if($scope.followed[i].id == deputyId) {
+            $rootScope.isFollowed = true;
+            break;
+          }
+        }
+      },
+      function(error) {
+        alert("Não foi possível estabelecer conexeão com o servidor...");
+      }
+    )
+  }
 
 }])
