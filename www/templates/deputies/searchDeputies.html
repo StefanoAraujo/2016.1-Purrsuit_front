@@ -1,6 +1,6 @@
 <ion-view>
-	<ion-content>
-	  <div class="list list-inset" ng-controller = "searchDeputies">
+	<ion-content ng-controller = "UserCtrl">
+	  <div class="list list-inset" ng-init = "searchDeputies()">
 	    <form ng-submit="doSearch(inputText)">
 	      <label class="item item-input">
 	        <i class="icon ion-search placeholder-icon"></i>
@@ -10,7 +10,7 @@
 	  </div>
 	  <div class="list">
 	    <a collection-repeat="itemDeputy in deputies" href="#/app/deputy/{{itemDeputy.id}}"
-	                  class="item item-avatar">
+	                  class="item item-avatar" ng-click=following(itemDeputy.id)>
 	      <img ng-src="{{itemDeputy.image_path}}">
 	      <h2>{{itemDeputy.deputy_name}}</h2>
 	    </a>

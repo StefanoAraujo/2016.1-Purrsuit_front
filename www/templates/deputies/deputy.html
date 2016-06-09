@@ -2,10 +2,12 @@
 	<div ng-controller="UserCtrl">
     <div class="deputyPerfil"></div>
     <img class="deputyImage" src="{{deputy.image_path}}"/>
-		<button class="button button-balanced follow-button icon ion-person-add" ng-click=followDeputy(deputy.id)>
+		<button class="button button-balanced follow-button icon ion-person-add" ng-click=followDeputy(deputy.id)
+		ng-hide="isFollowed">
 			Seguir
 		</button>
-		<button class="button button-assertive follow-button icon ion-sad" ng-click=unfollowDeputy(deputy.id)>
+		<button class="button button-assertive follow-button icon ion-sad" ng-click=unfollowDeputy(deputy.id)
+		ng-show="isFollowed">
 			Deixar de Seguir
 		</button>
 		<h2 class="deputy-name"> {{deputy.deputy_name}} </h2>
