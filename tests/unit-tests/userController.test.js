@@ -35,7 +35,7 @@ describe('UserController', function(){
       // Login needs refactoring
       var nullObject = {};
       $scope.logOut();
-      expect($rootScope.user).toEqual(nullObject);
+      expect($rootScope.user).toEqual(undefined);
     });
 
     /*it('should go to main login page', function(){
