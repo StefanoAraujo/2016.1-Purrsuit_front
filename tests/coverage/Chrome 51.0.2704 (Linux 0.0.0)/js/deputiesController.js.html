@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for js/deputiesController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">js/</a> deputiesController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>11/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.79% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/40</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('starter')
+&nbsp;
+.controller('DeputiesCtrl', ['$scope', '$stateParams', 'ServerDeputies', 'ServerFindDeputy', 'ServerSearchDeputies',
+  'ServerUf', 'ServerParty',
+  function($scope, $stateParams, ServerDeputies, ServerFindDeputy,
+    ServerSearchDeputies, ServerUf, ServerParty) {
+&nbsp;
+    $scope.getDeputies = function() {
+      ServerDeputies.get($scope.ServerDeputies, $scope.ServerDeputiesError)
+    }
+&nbsp;
+    $scope.ServerDeputies = function(data) {
+      console.log("SERVICES: Getting Deputies data from server...")
+      $scope.deputies = data.deputies;
+    }
+&nbsp;
+    $scope.ServerDeputiesError = <span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >      alert("Não foi possível estabelecer conexão com o servidor...");</span>
+<span class="cstat-no" title="statement not covered" >      console.log("SERVICES: ERROR in getting Deputies data from server...");</span>
+    }
+&nbsp;
+    $scope.singleDeputy = <span class="fstat-no" title="function not covered" >function() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var findId = $stateParams.deputyId;</span>
+<span class="cstat-no" title="statement not covered" >      ServerFindDeputy.get({</span>
+          id: findId
+        },
+<span class="fstat-no" title="function not covered" >        function(data) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log("SERVICES: Getting Deputy (Id: " + findId + ") data from server...");</span>
+<span class="cstat-no" title="statement not covered" >          $scope.deputy = data.deputy;</span>
+        },
+<span class="fstat-no" title="function not covered" >        function(error) {</span>
+<span class="cstat-no" title="statement not covered" >          alert("Não foi possível estabelecer conexão com o servidor...");</span>
+<span class="cstat-no" title="statement not covered" >          console.log("SERVICES: ERROR in getting Deputy (Id: " + findId + ") data from server...");</span>
+        }
+      )
+    }
+&nbsp;
+    $scope.searchDeputies = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      $scope.doSearch = <span class="fstat-no" title="function not covered" >function(inputText) {</span></span>
+<span class="cstat-no" title="statement not covered" >        $scope.deputies = [];</span>
+&nbsp;
+        //console.log(inputText.lenght);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        ServerSearchDeputies.get({</span>
+            toSearch: inputText
+          },
+<span class="fstat-no" title="function not covered" >          function(data) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("SERVICES: Getting Deputies with text(" + inputText + ") data from server...")</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (data.deputies.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Services: Search returned no Deputy")</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              $scope.deputies = data.deputies;</span>
+            }
+          },
+<span class="fstat-no" title="function not covered" >          function(error) {</span>
+<span class="cstat-no" title="statement not covered" >            alert("Não foi possível estabelecer conexão com o servidor...");</span>
+<span class="cstat-no" title="statement not covered" >            console.log("SERVICES: ERROR in getting Deputies with text(" + inputText + ") data from server...");</span>
+          })
+      }
+    }
+&nbsp;
+    $scope.getDeputyUf = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var local_uf_id = localStorage.getItem("DeputyUfId");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      $scope.getUf = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        ServerUf.get({</span>
+            ufId: local_uf_id
+          },
+<span class="fstat-no" title="function not covered" >          function(data) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("SERVICES: Getting deputy's Uf with Id(" + local_uf_id + ") data from server...")</span>
+<span class="cstat-no" title="statement not covered" >            $scope.deputyUf = data.ufs;</span>
+          },
+<span class="fstat-no" title="function not covered" >          function(error) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("SERVICES: Could not get deputy's Uf with Id(" + local_uf_id + ")");</span>
+          })
+      }
+    }
+&nbsp;
+    $scope.getDeputyParty = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var local_party_id = localStorage.getItem("DeputyPartyId");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      $scope.getParty = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        ServerParty.get({</span>
+            partyId: local_party_id
+          },
+<span class="fstat-no" title="function not covered" >          function(data) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("SERVICES: Getting deputy's party with Id(" + local_party_id + ") data from server...")</span>
+<span class="cstat-no" title="statement not covered" >            $scope.deputyParty = data.parties;</span>
+          },
+<span class="fstat-no" title="function not covered" >          function(error) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("SERVICES: Could not get deputy's party with Id(" + local_party_id + ")...");</span>
+          })
+      }
+    }
+&nbsp;
+  }
+])
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 09 2016 21:10:28 GMT-0300 (BRT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

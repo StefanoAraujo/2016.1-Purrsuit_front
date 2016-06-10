@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for js/userController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">js/</a> userController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>16/75</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.14% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.33% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/75</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('starter')
+&nbsp;
+.controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
+'LogInFactory','EditUser','LogOutFactory','DeleteUser','FollowedDeputies','FollowDeputy','UnfollowDeputy',
+function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory,
+  DeleteUser, FollowedDeputies, FollowDeputy, UnfollowDeputy) {
+  //Sign up
+  $scope.signUp = <span class="fstat-no" title="function not covered" >function(user){</span>
+<span class="cstat-no" title="statement not covered" >    console.log(user);</span>
+<span class="cstat-no" title="statement not covered" >    SignUp.save({user:user}, <span class="fstat-no" title="function not covered" >function(user) {</span></span>
+<span class="cstat-no" title="statement not covered" >      $ionicPopup.alert({</span>
+        title: 'Sucesso',
+        template: 'Conta criada com êxito!'
+      });
+<span class="cstat-no" title="statement not covered" >      console.log(user)</span>
+<span class="cstat-no" title="statement not covered" >      $state.go('login')</span>
+&nbsp;
+    }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >      $ionicPopup.alert({</span>
+        title: 'Erro',
+        template: 'Falha no cadastro, verifique se os dados estão corretos ou se o email ja foi cadastrado'
+      });
+    });
+  }
+&nbsp;
+  //Log in
+  $scope.signIn = <span class="fstat-no" title="function not covered" >function(data){</span>
+<span class="cstat-no" title="statement not covered" >    LogInFactory.get(data, <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      console.log(data);</span>
+<span class="cstat-no" title="statement not covered" >      updateCurrentUser(data.user);</span>
+<span class="cstat-no" title="statement not covered" >      $rootScope.logged = true;</span>
+<span class="cstat-no" title="statement not covered" >      console.log($scope.logged);</span>
+<span class="cstat-no" title="statement not covered" >      $state.go('app.browseDeputies')</span>
+&nbsp;
+    }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log(error);</span>
+<span class="cstat-no" title="statement not covered" >      $ionicPopup.alert({</span>
+        title: 'Oops!',
+        template: 'O email e/ou a senha estão incorretos.\nPor favor, tente novamente!'
+      });
+    });
+  }
+  //Log out
+  // Verificar a necessidade de usar a SESSION!!!
+  $scope.logOut = function(){
+    // ONLY WORKS IF USER IS CONNECTED
+    /*var userId = $scope.currentUser.id;
+    console.log("LOGOUT: User (id: " + userId + ")...");*/
+    console.log("LOGOUT: Cleaning user session data...");
+&nbsp;
+    $rootScope.user = {};
+&nbsp;
+    $rootScope.logged = false;
+&nbsp;
+    $state.go('index');
+  }
+&nbsp;
+  //Edit
+  $scope.editUser = <span class="fstat-no" title="function not covered" >function({id,user}){</span>
+<span class="cstat-no" title="statement not covered" >    console.log($scope.currentUser)</span>
+<span class="cstat-no" title="statement not covered" >    console.log({id,user});</span>
+<span class="cstat-no" title="statement not covered" >    EditUser.save({id,user}, <span class="fstat-no" title="function not covered" >function({id,user}){</span></span>
+<span class="cstat-no" title="statement not covered" >      $ionicPopup.alert({</span>
+        title: 'Sucesso',
+        template: 'Dados alterados com êxito!'
+      });
+<span class="cstat-no" title="statement not covered" >      updateCurrentUser(user);</span>
+<span class="cstat-no" title="statement not covered" >      $state.go('app.userprofile')</span>
+&nbsp;
+    }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >      $ionicPopup.alert({</span>
+        title: 'Erro',
+        template: 'Verifique se os dados estão corretos ou se o email ja foi cadastrado'
+      })
+    })
+  }
+&nbsp;
+  updateCurrentUser = <span class="fstat-no" title="function not covered" >function(data){</span>
+<span class="cstat-no" title="statement not covered" >    $rootScope.user = data;</span>
+  }
+&nbsp;
+  //Delete
+  $scope.deleteUser = <span class="fstat-no" title="function not covered" >function(id){</span>
+<span class="cstat-no" title="statement not covered" >    console.log(id);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var confirmPopup = $ionicPopup.confirm({</span>
+      title: 'Atenção!',
+      template: 'Você tem certeza que deseja encerrar esta conta?'
+   });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >   confirmPopup.then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >         if(res) {</span>
+<span class="cstat-no" title="statement not covered" >           DeleteUser.delete({id}, <span class="fstat-no" title="function not covered" >function(id){</span></span>
+<span class="cstat-no" title="statement not covered" >             $ionicPopup.alert({</span>
+               title: 'Conta encerrada!',
+               template: 'Conta encerrada com êxito!'
+             });
+<span class="cstat-no" title="statement not covered" >             $state.go('login',{},{reload: true})</span>
+&nbsp;
+           }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >             $ionicPopup.alert({</span>
+               title: 'Erro',
+               template: 'Não foi possível encerrar a conta!'
+             })
+             })
+          }
+      })
+  }
+  $scope.currentUser = $rootScope.user;
+&nbsp;
+  $scope.followedDeputies = <span class="fstat-no" title="function not covered" >function () {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    FollowedDeputies.get({</span>
+        id: $scope.currentUser.id
+      },
+<span class="fstat-no" title="function not covered" >      function(data) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log("SERVICES: Getting Followed Deputies from server");</span>
+<span class="cstat-no" title="statement not covered" >        $scope.followed = data.deputies;</span>
+      },
+<span class="fstat-no" title="function not covered" >      function(error) {</span>
+<span class="cstat-no" title="statement not covered" >        alert("Não foi possível estabelecer conexão com o servidor...");</span>
+      }
+    )
+  }
+&nbsp;
+  $scope.followDeputy = <span class="fstat-no" title="function not covered" >function(deputyId) {</span>
+<span class="cstat-no" title="statement not covered" >      var userId = $scope.currentUser.id;</span>
+<span class="cstat-no" title="statement not covered" >      var data = {deputyId, userId, id: userId};</span>
+<span class="cstat-no" title="statement not covered" >      FollowDeputy.save(data, <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log("Deputy followed!");</span>
+<span class="cstat-no" title="statement not covered" >        $rootScope.isFollowed = true;</span>
+<span class="cstat-no" title="statement not covered" >        $state.reload();</span>
+      },
+<span class="fstat-no" title="function not covered" >      function(error){</span>
+<span class="cstat-no" title="statement not covered" >        console.log("Não foi possível seguir este deputado!");</span>
+      }
+    )
+  }
+&nbsp;
+  $scope.unfollowDeputy = <span class="fstat-no" title="function not covered" >function(deputyId) {</span>
+<span class="cstat-no" title="statement not covered" >      var userId = $scope.currentUser.id;</span>
+<span class="cstat-no" title="statement not covered" >      var data = {deputyId, userId, id: userId};</span>
+<span class="cstat-no" title="statement not covered" >      UnfollowDeputy.save(data, <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log("Deputy unfollowed!");</span>
+<span class="cstat-no" title="statement not covered" >        $rootScope.isFollowed = false;</span>
+<span class="cstat-no" title="statement not covered" >        $state.reload();</span>
+      },
+<span class="fstat-no" title="function not covered" >      function(error){</span>
+<span class="cstat-no" title="statement not covered" >        console.log("Não foi possível deixar de seguir este deputado!");</span>
+      }
+    )
+  }
+&nbsp;
+  $scope.following = <span class="fstat-no" title="function not covered" >function (deputyId) {</span>
+<span class="cstat-no" title="statement not covered" >    FollowedDeputies.get({</span>
+      id: $scope.currentUser.id
+    },
+<span class="fstat-no" title="function not covered" >      function(data) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log("SERVICES: Getting Followed Deputies from server");</span>
+<span class="cstat-no" title="statement not covered" >        $scope.followed = data.deputies;</span>
+<span class="cstat-no" title="statement not covered" >        $rootScope.isFollowed = false;</span>
+<span class="cstat-no" title="statement not covered" >        for (var i in $scope.followed) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(deputyId);</span>
+<span class="cstat-no" title="statement not covered" >          console.log($scope.followed[i].id);</span>
+<span class="cstat-no" title="statement not covered" >          if($scope.followed[i].id == deputyId) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.isFollowed = true;</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          }
+        }
+      },
+<span class="fstat-no" title="function not covered" >      function(error) {</span>
+<span class="cstat-no" title="statement not covered" >        alert("Não foi possível estabelecer conexeão com o servidor...");</span>
+      }
+    )
+  }
+&nbsp;
+}])
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 09 2016 21:10:28 GMT-0300 (BRT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

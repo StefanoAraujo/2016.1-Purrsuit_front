@@ -24,7 +24,7 @@ module.exports = function(config) {
 
       '../www/js/app.js',
       '../www/js/**/*.js',
-      'unit-tests/*.test.js'
+      './unit-tests/*.test.js'
     ],
 
 
