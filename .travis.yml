@@ -4,6 +4,11 @@ node_js:
 env:
   global:
   - secure: SiVM06SQQXT5xSgISYoVotxQZqTPZ8AL6kegcxDytIMsz8+chPLCpeoFQruFBynm4etuAjDaUK9W7aY+7+0wRULu6PpB1R9kzETmh35zTEQBi36eYc+QMNr0uR7lS2ZkBELfd7lcBoN65PbMAY7qq7NxSwn5ho7pAlp9FfYvXR2ZSwaJz+ijlm/kgFvh6J/low0yU0svDCZmwd6plwiKkE5igsdvsykK6WfWuxpfxoSsHhfmzU8Vo5ZxXTLrViZk31d52+PaOCNNihrK+bsw9bgydOSWT+XAA2NNpciNOZLeDMRwgH71zxJbD+HsspzLf5P4CrIo4tX3VH/UPw9+rcQdYkFopbeM+BrJpnH5lTfzJNRQH2zRVZT2ua6Dp33VTr8hZl2AXp8BGtAlf34EiEYjBAvUp7JNanFKD0h8MavY5rX2p0kAd48UAFUrpsMV+3xJndBC8BT84+yIYvIhSU/euWTRyy+eepE/PkwrYhXRD1AC61YGgRu4lRxMiC5UmWimgGKrQ8mt7/4Jy03PP7BZIjtVxwitnmPFfRq8bcw/AcTuenG7O/xfO7aDG3fDRILN09kyBoBZz2seNNAYIqpl1OBORiS5kN/090Kt5xlhLIeVyRlediHFUnqkallw/atnOOqYf7nFUMkbXnkRtZnCukG1+CPj2DEmYwjKCZ4=
+addons:
+  code_climate:
+    repo_token: 5689a85a24d4c8c50db903b79331eb4f54bc3b422cd6fc8029785c86ad218bae
+before_script:
+  - npm install codeclimate-test-reporter
 after_success:
 - curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge
 - chmod a+x /tmp/travis-automerge
