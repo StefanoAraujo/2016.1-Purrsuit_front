@@ -24,6 +24,10 @@ angular.module('starter.services', ['ngResource'])
   return $resource(HOST + '/users/delete/:id')
 })
 
+.factory('LevelsFactory', function($resource) {
+  return $resource(HOST + '/levels/all')
+})
+
 .factory('FollowDeputy', function($resource) {
   return $resource(HOST + '/users/:id/follow_deputy', {
     id: "@id"

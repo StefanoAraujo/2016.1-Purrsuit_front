@@ -1,5 +1,5 @@
 <ion-view cache-view="false" view-title="Perfil">
-  <ion-content>
+  <ion-content ng-init=updateLevel()>
     <div class="list card">
       <h1 class="item item-icon-left">
         <i class=" icon ion-person"></i>
@@ -10,6 +10,30 @@
         {{currentUser.email}}
       </h2>
     </div>
+
+    <div class="list card">
+      <h1 class="item item-icon-left">
+        <i class=" icon ion-person"></i>
+        {{currentUser.level.level_description}}
+      </h1>
+      <h1 class="item item-icon-left">
+        <i class=" icon ion-person"></i>
+        {{currentUser.level.level_number}}
+      </h1>
+    </div>
+
+    <div class="levelBar" ng-init=updateLevelBar()>
+      <span  style="width: {{levelPercentage}}%"></span>
+      {{currentUser.experience_points}}
+    </div>
+
+    <div id="minXpInfo">
+      {{currentUser.level.xp_min}} XP
+    </div>
+    <div id="maxXpInfo">
+      {{currentUser.level.xp_max}} XP
+    </div>
+
     <div class="row">
       <div class="col col-50">
         <button class="button button-positive icon ion-edit" ui-sref="app.edituser">
