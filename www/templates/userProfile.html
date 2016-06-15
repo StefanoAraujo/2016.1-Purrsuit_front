@@ -11,38 +11,36 @@
       </h2>
     </div>
 
-    <div class="list card">
-      <h1 class="item item-icon-left">
-        <i class=" icon ion-person"></i>
-        {{currentUser.level.level_description}}
-      </h1>
-      <h1 class="item item-icon-left">
-        <i class=" icon ion-person"></i>
-        {{currentUser.level.level_number}}
-      </h1>
-    </div>
 
-    <div class="levelBar" ng-init=updateLevelBar()>
-      <span  style="width: {{levelPercentage}}%"></span>
-      {{currentUser.experience_points}}
-    </div>
-
-    <div id="minXpInfo">
-      {{currentUser.level.xp_min}} XP
-    </div>
-    <div id="maxXpInfo">
-      {{currentUser.level.xp_max}} XP
+    <div class="item item-avatar">
+      <img ng-src="{{currentUser.level.image_url}}" />
+      <h2>Level {{currentUser.level.level_number}}</h2>
+      <p>{{currentUser.level.level_description}}</p>
+      <p>XP atual: {{currentUser.experience_points}}</p>
+      <div class="levelBar" ng-init=updateLevelBar()>
+        <span style="width: {{levelPercentage}}%"></span>
+      </div>
+      <div id="minXpInfo">
+        <p>
+          {{currentUser.level.xp_min}} XP
+        </p>
+      </div>
+      <div id="maxXpInfo">
+        <p>
+          {{currentUser.level.xp_max}} XP
+        </p>
+      </div>
     </div>
 
     <div class="row">
       <div class="col col-50">
         <button class="button button-positive icon ion-edit" ui-sref="app.edituser">
-           Editar Dados
+          Editar Dados
         </button>
       </div>
       <div class="col col-50">
-        <button class="button button-assertive icon ion-close" ng-click = deleteUser(currentUser.id)>
-           Encerrar Conta
+        <button class="button button-assertive icon ion-close" ng-click=d eleteUser(currentUser.id)>
+          Encerrar Conta
         </button>
       </div>
     </div>
