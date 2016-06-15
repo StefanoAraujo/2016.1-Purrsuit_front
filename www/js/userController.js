@@ -2,8 +2,9 @@ angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
 'LogInFactory','EditUser','LogOutFactory','DeleteUser','FollowedDeputies','FollowDeputy','UnfollowDeputy',
+'LevelsFactory',
 function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory,
-  DeleteUser, FollowedDeputies, FollowDeputy, UnfollowDeputy) {
+  DeleteUser, FollowedDeputies, FollowDeputy, UnfollowDeputy, LevelsFactory) {
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
@@ -106,7 +107,56 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser
           }
       })
   }
+
+  // Shouldn't be in a function?
   $scope.currentUser = $rootScope.user;
+
+  $scope.updateLevelBar = function()
+  {
+    var percentage = 0;
+    var userExp = $rootScope.user.experience_points;
+
+    var minXp = $rootScope.user.level.xp_min;
+    var maxXp = $rootScope.user.level.xp_max;
+
+    var diffXp = maxXp - minXp;
+    var diffUserXp = userExp - minXp;
+
+    percentage = (100 * diffUserXp) / diffXp
+    $scope.levelPercentage = percentage;
+  }
+
+  $scope.updateLevel = function(){
+    var userExp = $rootScope.user.experience_points;
+
+    LevelsFactory.get(function(data){
+      console.log("Getting Levels data from SERVER...");
+      var levelsData = data.levels;
+
+      for(var counter in levelsData)
+      {
+        var maxXp = levelsData[counter].xp_max;
+        var minXp = levelsData[counter].xp_min;
+
+        if(userExp <= maxXp && userExp >= minXp)
+        {
+          $rootScope.user.level = levelsData[counter];
+
+          // ONLY FOR THIS VERSION
+          break;
+        }
+      }
+    }, function(error){
+      console.log("ERROR: Could not get Levels data from SERVER...");
+    })
+  }
+
+  $scope.addExperience = function(xpPoints){
+    $rootScope.user += xpPoints;
+    $scope.updateLevel();
+
+    // NEED: Fix EditUser function in Rails
+  }
 
   $scope.followedDeputies = function () {
 
