@@ -1,10 +1,10 @@
 angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
-'LogInFactory','EditUser','LogOutFactory','DeleteUser','FollowedDeputies','FollowDeputy','UnfollowDeputy',
-'LevelsFactory',
-function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser, LogOutFactory,
-  DeleteUser, FollowedDeputies, FollowDeputy, UnfollowDeputy, LevelsFactory) {
+'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy',
+'ServerUnfollowDeputy','LevelsFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,
+LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy,
+ServerUnfollowDeputy, LevelsFactory) {
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
@@ -159,69 +159,73 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp, LogInFactory, EditUser
   }
 
   $scope.followedDeputies = function () {
+      var userId = $scope.currentUser.id;
+      var data = {id: userId}
+      ServerFollowedDeputies.get(data,$scope.serverFollowedDeputies, $scope.serverFollowedDeputiesError)
+  }
 
-    FollowedDeputies.get({
-        id: $scope.currentUser.id
-      },
-      function(data) {
-        console.log("SERVICES: Getting Followed Deputies from server");
-        $scope.followed = data.deputies;
-      },
-      function(error) {
-        alert("Não foi possível estabelecer conexão com o servidor...");
-      }
-    )
+  $scope.serverFollowedDeputies = function(data) {
+    console.log("SERVICES: Getting Followed Deputies from server");
+    $scope.followed = data.deputies;
+  }
+
+  $scope.serverFollowedDeputiesError = function(data) {
+    alert("Não foi possível estabelecer conexão com o servidor...");
   }
 
   $scope.followDeputy = function(deputyId) {
-      var userId = $scope.currentUser.id;
-      var data = {deputyId, userId, id: userId};
-      FollowDeputy.save(data, function(data) {
-        console.log("Deputy followed!");
-        $rootScope.isFollowed = true;
-        $state.reload();
-      },
-      function(error){
-        console.log("Não foi possível seguir este deputado!");
-      }
-    )
+    var userId = $scope.currentUser.id;
+    var data = {deputyId, userId, id: userId};
+    ServerFollowDeputy.save(data, $scope.serverFollowDeputy, $scope.serverFollowDeputyError)
+  }
+
+  $scope.serverFollowDeputy = function (data) {
+    console.log("Deputy followed!");
+    $rootScope.isFollowed = true;
+    $state.reload();
+  }
+
+  $scope.serverFollowDeputyError = function (data) {
+    console.log("Não foi possível seguir este deputado!");
   }
 
   $scope.unfollowDeputy = function(deputyId) {
-      var userId = $scope.currentUser.id;
-      var data = {deputyId, userId, id: userId};
-      UnfollowDeputy.save(data, function(data) {
-        console.log("Deputy unfollowed!");
-        $rootScope.isFollowed = false;
-        $state.reload();
-      },
-      function(error){
-        console.log("Não foi possível deixar de seguir este deputado!");
-      }
-    )
+    var userId = $scope.currentUser.id;
+    var data = {deputyId, userId, id: userId};
+    ServerUnfollowDeputy.save(data, $scope.serverUnfollowDeputy, $scope.serverUnfollowDeputyError)
   }
 
-  $scope.following = function (deputyId) {
-    FollowedDeputies.get({
-      id: $scope.currentUser.id
-    },
-      function(data) {
-        console.log("SERVICES: Getting Followed Deputies from server");
-        $scope.followed = data.deputies;
-        $rootScope.isFollowed = false;
-        for (var i in $scope.followed) {
-          console.log(deputyId);
-          console.log($scope.followed[i].id);
-          if($scope.followed[i].id == deputyId) {
-            $rootScope.isFollowed = true;
-            break;
-          }
-        }
-      },
-      function(error) {
-        alert("Não foi possível estabelecer conexeão com o servidor...");
+  $scope.serverUnfollowDeputy = function (data) {
+    console.log("Deputy unfollowed!");
+    $rootScope.isFollowed = false;
+    $state.reload();
+  }
+
+  $scope.serverUnfollowDeputyError = function (data) {
+    console.log("Não foi possível deixar de seguir este deputado!");
+  }
+
+  $scope.following = function(deputyId) {
+    var userId = $scope.currentUser.id;
+    $rootScope.deputyCheck = deputyId;
+    var data = {id: userId};
+    ServerFollowedDeputies.get(data, $scope.serverFollowing, $scope.serverFollowingError)
+  }
+
+  $scope.serverFollowing = function(data) {
+    console.log("SERVICES: Getting Followed Deputies from server");
+    $scope.followed = data.deputies;
+    $rootScope.isFollowed = false;
+    for (var i in $scope.followed) {
+      if($scope.followed[i].id == $rootScope.deputyCheck) {
+        $rootScope.isFollowed = true;
+        break;
       }
-    )
+    }
+  }
+  
+  $scope.serverFollowingError = function (data) {
+      alert("Não foi possível estabelecer conexeão com o servidor...");
   }
 
 }])

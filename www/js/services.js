@@ -28,20 +28,20 @@ angular.module('starter.services', ['ngResource'])
   return $resource(HOST + '/levels/all')
 })
 
-.factory('FollowDeputy', function($resource) {
+.factory('ServerFollowDeputy', function($resource) {
   return $resource(HOST + '/users/:id/follow_deputy', {
     id: "@id"
   })
 })
 
-.factory('UnfollowDeputy', function($resource) {
+.factory('ServerUnfollowDeputy', function($resource) {
   return $resource(HOST + '/users/:id/unfollow_deputy', {
     id: "@id"
   })
 })
 
 
-.factory('FollowedDeputies', function($resource) {
+.factory('ServerFollowedDeputies', function($resource) {
   return $resource(HOST + '/users/:id/followed_deputies', {
     id: "@id"
   })
