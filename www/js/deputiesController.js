@@ -6,94 +6,57 @@ angular.module('starter')
     ServerSearchDeputies, ServerUf, ServerParty) {
 
     $scope.getDeputies = function() {
-      ServerDeputies.get($scope.ServerDeputies, $scope.ServerDeputiesError)
+      ServerDeputies.get($scope.serverDeputies, $scope.serverDeputiesError)
     }
 
-    $scope.ServerDeputies = function(data) {
+    $scope.serverDeputies = function(data) {
       console.log("SERVICES: Getting Deputies data from server...")
       $scope.deputies = data.deputies;
     }
 
-    $scope.ServerDeputiesError = function(data) {
+    $scope.serverDeputiesError = function(data) {
       alert("Não foi possível estabelecer conexão com o servidor...");
       console.log("SERVICES: ERROR in getting Deputies data from server...");
     }
 
     $scope.singleDeputy = function() {
-
       var findId = $stateParams.deputyId;
       ServerFindDeputy.get({
           id: findId
-        },
-        function(data) {
-          console.log("SERVICES: Getting Deputy (Id: " + findId + ") data from server...");
-          $scope.deputy = data.deputy;
-        },
-        function(error) {
-          alert("Não foi possível estabelecer conexão com o servidor...");
-          console.log("SERVICES: ERROR in getting Deputy (Id: " + findId + ") data from server...");
-        }
-      )
+        }, $scope.serverFindDeputy, $scope.serverFindDeputyError)
     }
 
-    $scope.searchDeputies = function() {
-      $scope.doSearch = function(inputText) {
+    $scope.serverFindDeputy = function(data) {
+      console.log("SERVICES: Getting Deputy data from server...");
+      $scope.deputy = data.deputy;
+    }
+    $scope.serverFindDeputyError = function(data) {
+      alert("Não foi possível estabelecer conexão com o servidor...");
+      console.log("SERVICES: ERROR in getting Deputy data from server...");
+    }
+
+    $scope.searchDeputies = function(inputText) {
         $scope.deputies = [];
-
-        //console.log(inputText.lenght);
-
         ServerSearchDeputies.get({
             toSearch: inputText
-          },
-          function(data) {
-            console.log("SERVICES: Getting Deputies with text(" + inputText + ") data from server...")
+          }, $scope.serverSearchDeputies, $scope.serverSearchDeputiesError)
+    }
 
-            if (data.deputies.length === 0) {
-              console.log("Services: Search returned no Deputy")
-            } else {
-              $scope.deputies = data.deputies;
-            }
-          },
-          function(error) {
-            alert("Não foi possível estabelecer conexão com o servidor...");
-            console.log("SERVICES: ERROR in getting Deputies with text(" + inputText + ") data from server...");
-          })
+    $scope.serverSearchDeputies = function(data){
+      console.log("SERVICES: Getting Deputies with text data from server...")
+
+      if (data.deputies.length > 0) {
+        $scope.deputies = data.deputies;
+      } else {
+        alert("Não foi encontrado nenhum deputado com esses parâmetros")
+        console.log("Services: Search returned no Deputy")
       }
     }
 
-    $scope.getDeputyUf = function() {
-      var local_uf_id = localStorage.getItem("DeputyUfId");
-
-      $scope.getUf = function() {
-        ServerUf.get({
-            ufId: local_uf_id
-          },
-          function(data) {
-            console.log("SERVICES: Getting deputy's Uf with Id(" + local_uf_id + ") data from server...")
-            $scope.deputyUf = data.ufs;
-          },
-          function(error) {
-            console.log("SERVICES: Could not get deputy's Uf with Id(" + local_uf_id + ")");
-          })
-      }
+    $scope.serverSearchDeputiesError = function(data) {
+      alert("Não foi possível estabelecer conexão com o servidor...");
+      console.log("SERVICES: ERROR in getting Deputies with text data from server...");
     }
-
-    $scope.getDeputyParty = function() {
-      var local_party_id = localStorage.getItem("DeputyPartyId");
-
-      $scope.getParty = function() {
-        ServerParty.get({
-            partyId: local_party_id
-          },
-          function(data) {
-            console.log("SERVICES: Getting deputy's party with Id(" + local_party_id + ") data from server...")
-            $scope.deputyParty = data.parties;
-          },
-          function(error) {
-            console.log("SERVICES: Could not get deputy's party with Id(" + local_party_id + ")...");
-          })
-      }
-    }
-
   }
+
 ])

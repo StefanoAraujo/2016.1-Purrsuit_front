@@ -40,7 +40,7 @@ describe("DeputiesCtrl", function() {
     }))
   });
 
-  describe("ServerDeputies", function() {
+  describe("serverDeputies", function() {
     var $scope, controller;
     beforeEach(function() {
       $scope = {};
@@ -50,16 +50,179 @@ describe("DeputiesCtrl", function() {
     });
 
     it("Should exist", function() {
-      $scope.ServerDeputies('dummy');
+      $scope.serverDeputies('dummy');
     });
 
     it("Should call ServerDeputies.get", inject(function(ServerDeputies) {
       var dummy = {
         deputies: "dummy"
       }
-      $scope.ServerDeputies(dummy);
+      $scope.serverDeputies(dummy);
 
       expect($scope.deputies).toBe("dummy");
     }))
   })
+
+  describe("serverDeputiesError", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("DeputiesCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.serverDeputiesError('dummy');
+    });
+
+    it("Should show alert", function() {
+      spyOn(window, 'alert');
+      $scope.serverDeputiesError('dummy');
+      expect(window.alert).toHaveBeenCalledWith("Não foi possível estabelecer conexão com o servidor...");
+    });
+  });
+
+  describe("singleDeputy", function() {
+    var $scope, controller, findId;
+    beforeEach(function(){
+      $scope = {};
+      findId = 10;
+      controller = $controller("DeputiesCtrl", {
+        $scope: $scope
+      });
+      spyOn(ServerFindDeputy, 'get');
+    });
+
+    it("Should exist", function() {
+      $scope.singleDeputy();
+    });
+
+    it("Should call ServerFindDeputy.get", inject(function(ServerFindDeputy) {
+      $scope.singleDeputy(findId);
+      expect(ServerFindDeputy.get).toHaveBeenCalled();
+    }));
+  });
+
+  describe("serverFindDeputy", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("DeputiesCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.serverFindDeputy('dummy');
+    });
+
+    it("Should call ServerFindDeputy.get", inject(function(ServerFindDeputy) {
+      var deputy = {
+        deputy: "dummy"
+      }
+      $scope.serverFindDeputy(deputy);
+
+      expect($scope.deputy).toBe("dummy");
+    }));
+  });
+
+  describe("serverFindDeputyError", function() {
+    var $scope, controller;
+    beforeEach(function(){
+      $scope = {};
+      controller = $controller("DeputiesCtrl", {
+        $scope: $scope
+      });
+    })
+
+    it("Should exist", function() {
+      $scope.serverFindDeputyError('dummy');
+    });
+
+    it("Should show alert", function(){
+      spyOn(window, 'alert');
+      $scope.serverFindDeputyError('dummy');
+      expect(window.alert).toHaveBeenCalledWith("Não foi possível estabelecer conexão com o servidor...");
+    });
+  });
+
+  describe("searchDeputies", function() {
+    var $scope, controller, inputText;
+    beforeEach(function(){
+      $scope = {};
+      $scope.deputies = [];
+      inputText = "Baleia";
+      controller = $controller("DeputiesCtrl", {
+        $scope: $scope
+      });
+      spyOn(ServerSearchDeputies, 'get');
+    });
+
+    it("Should exist", function() {
+      $scope.searchDeputies('dummy');
+    });
+
+    it("Should call serverSearchDeputies.get", inject(function(ServerSearchDeputies) {
+      var data = "dummy"
+      $scope.searchDeputies();
+      expect(ServerSearchDeputies.get).toHaveBeenCalled();
+    }));
+  });
+
+  describe("serverSearchDeputies", function() {
+    var $scope, controller;
+
+    beforeEach(function() {
+      $scope = {};
+      $scope.deputies = [];
+      controller = $controller("DeputiesCtrl", {
+      $scope: $scope
+      });
+    });
+
+    it("Should exist", function() {
+      var data = {"deputies":[{"id":297,"name":"LUIZ FELIPE BALEIA TENUTO ROSSI","gender":"masculino","email":"dep.baleiarossi@camara.gov.br","age":null,"deputy_name":"BALEIA ROSSI","registration":342,"legislation_situation":"Titular","followers_count":0,"image_path":"http://www.camara.gov.br/internet/deputado/bandep/178975.jpg","uf":{"id":20,"name":"São Paulo","initials":"SP"},
+      "party":{"id":8,"name":"Partido do Movimento Democrático Brasileiro","initials":"PMDB"}}]}
+      $scope.serverSearchDeputies(data);
+    });
+
+    it("Should show alert error", function()  {
+      var data = {"deputies":[]}
+      spyOn(window, 'alert');
+      $scope.serverSearchDeputies(data);
+      expect(window.alert).toHaveBeenCalledWith("Não foi encontrado nenhum deputado com esses parâmetros")
+    })
+  });
+
+  describe("serverSearchDeputiesError", function() {
+    var $scope, controller;
+    beforeEach(function(){
+      $scope = {};
+      controller = $controller("DeputiesCtrl", {
+        $scope: $scope
+      });
+    })
+
+    it("Should exist", function() {
+      $scope.serverSearchDeputiesError('dummy');
+    });
+
+    it("Should show alert", function(){
+      spyOn(window, 'alert');
+      $scope.serverSearchDeputiesError('dummy');
+      expect(window.alert).toHaveBeenCalledWith("Não foi possível estabelecer conexão com o servidor...");
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
 })

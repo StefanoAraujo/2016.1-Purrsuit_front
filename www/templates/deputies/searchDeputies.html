@@ -1,7 +1,7 @@
 <ion-view>
 	<ion-content ng-controller = "UserCtrl">
-	  <div class="list list-inset" ng-init = "searchDeputies()">
-	    <form ng-submit="doSearch(inputText)">
+	  <div class="list list-inset">
+	    <form ng-submit="searchDeputies(inputText)">
 	      <label class="item item-input">
 	        <i class="icon ion-search placeholder-icon"></i>
 	        <input ng-model="inputText" type="text" placeholder="Digite aqui quem você deseja buscar...">
