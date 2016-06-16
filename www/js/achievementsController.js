@@ -4,29 +4,34 @@ angular.module('starter')
 function($scope, $stateParams, ServerAchievements, ServerFindAchv){
 
   $scope.getAchievements =  function () {
-    ServerAchievements.get(function(data){
+    ServerAchievements.get($scope.serverAchievements, $scope.serverAchievementsError)
+	}
+		
+	$scope.serverAchievements = function(data){
       console.log("SERVICES: Getting achievements data from server...");
       $scope.achievements = data.achievements;
-    },
-    function(error){
+	}
+
+  $scope.serverAchievementsError =  function(data){
       alert("Não foi possível estabelecer conexão com o servidor...");
       console.log("SERVICES: ERROR in getting Achievements data from server...");
-    })
   }
 
-  // TODO: Remover os callbacks de dentro da chamada e criar funcoes de escopo
   $scope.singleAchievement =  function () {
     var searchId = $stateParams.achvId;
 
-    ServerFindAchv.get({id: searchId}, $scope.findAchvSuccess ,
-    function(error){
-      alert("Não foi possível estabelecer conexão com o servidor...");
-      console.log("SERVICES: ERROR in getting Achievement (Id: " + searchId + ") data from server...");
-    })
+    ServerFindAchv.get({
+			id: searchId
+		}, $scope.serverFindAchv, $scope.serverFindAchvError)
   }
 
-  $scope.findAchvSuccess = function(data) {
-    console.log("SERVICES: Getting Achievement (Id: " + searchId + ") data from server...");
+  $scope.serverFindAchv = function(data) {
+    console.log("SERVICES: Getting Achievement data from server...");
     $scope.achievement = data.achievement;
+  }
+
+  $scope.serverFindAchvError = function(data){
+      alert("Não foi possível estabelecer conexão com o servidor...");
+      console.log("SERVICES: ERROR in getting Achievement data from server...");
   }
 }])
