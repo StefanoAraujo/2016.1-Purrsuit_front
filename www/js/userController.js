@@ -159,9 +159,9 @@ ServerUnfollowDeputy, LevelsFactory) {
   }
 
   $scope.followedDeputies = function () {
+      console.log($scope.currentUser);
       var userId = $scope.currentUser.id;
-      var data = {id: userId}
-      ServerFollowedDeputies.get(data,$scope.serverFollowedDeputies, $scope.serverFollowedDeputiesError)
+      ServerFollowedDeputies.get({id: userId}, $scope.serverFollowedDeputies, $scope.serverFollowedDeputiesError)
   }
 
   $scope.serverFollowedDeputies = function(data) {
@@ -182,11 +182,12 @@ ServerUnfollowDeputy, LevelsFactory) {
   $scope.serverFollowDeputy = function (data) {
     console.log("Deputy followed!");
     $rootScope.isFollowed = true;
-    $state.reload();
+    //$state.go($state.current, {}, {reload: true});
   }
 
   $scope.serverFollowDeputyError = function (data) {
-    console.log("Não foi possível seguir este deputado!");
+    alert("Não foi possível seguir este deputado!");
+
   }
 
   $scope.unfollowDeputy = function(deputyId) {
@@ -198,18 +199,18 @@ ServerUnfollowDeputy, LevelsFactory) {
   $scope.serverUnfollowDeputy = function (data) {
     console.log("Deputy unfollowed!");
     $rootScope.isFollowed = false;
-    $state.reload();
+    //$state.reload();
   }
 
   $scope.serverUnfollowDeputyError = function (data) {
+    alert("Não foi possível deixar de seguir este deputado!");  
     console.log("Não foi possível deixar de seguir este deputado!");
   }
 
   $scope.following = function(deputyId) {
     var userId = $scope.currentUser.id;
     $rootScope.deputyCheck = deputyId;
-    var data = {id: userId};
-    ServerFollowedDeputies.get(data, $scope.serverFollowing, $scope.serverFollowingError)
+    ServerFollowedDeputies.get({id:userId},$scope.serverFollowing, $scope.serverFollowingError)
   }
 
   $scope.serverFollowing = function(data) {
@@ -223,7 +224,7 @@ ServerUnfollowDeputy, LevelsFactory) {
       }
     }
   }
-  
+
   $scope.serverFollowingError = function (data) {
       alert("Não foi possível estabelecer conexeão com o servidor...");
   }

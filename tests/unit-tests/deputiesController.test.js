@@ -182,8 +182,7 @@ describe("DeputiesCtrl", function() {
     });
 
     it("Should exist", function() {
-      var data = {"deputies":[{"id":297,"name":"LUIZ FELIPE BALEIA TENUTO ROSSI","gender":"masculino","email":"dep.baleiarossi@camara.gov.br","age":null,"deputy_name":"BALEIA ROSSI","registration":342,"legislation_situation":"Titular","followers_count":0,"image_path":"http://www.camara.gov.br/internet/deputado/bandep/178975.jpg","uf":{"id":20,"name":"São Paulo","initials":"SP"},
-      "party":{"id":8,"name":"Partido do Movimento Democrático Brasileiro","initials":"PMDB"}}]}
+      var data = {"deputies":[{"id":297,"name":"LUIZ FELIPE BALEIA TENUTO ROSSI"}]}
       $scope.serverSearchDeputies(data);
     });
 
