@@ -10,7 +10,7 @@ ServerUnfollowDeputy, LevelsFactory) {
     console.log(user);
     SignUp.save({user:user}, $scope.signUpValid, $scope.signUpError)
 	}
-	
+
 	$scope.signUpValid = function(user) {
       $ionicPopup.alert({
         title: 'Sucesso',
@@ -20,20 +20,20 @@ ServerUnfollowDeputy, LevelsFactory) {
       $state.go('login')
 
 	}
-	
+
 	$scope.signUpError = function(error) {
       $ionicPopup.alert({
         title: 'Erro',
         template: 'Falha no cadastro, verifique se os dados estão corretos ou se o email ja foi cadastrado'
       });
 	}
- 
+
 
   //Log in
   $scope.signIn = function(data){
     LogInFactory.get(data, $scope.signInValid, $scope.signInError)
 	}
-		
+
 	$scope.signInValid = function(data) {
 		console.log(data);
 		updateCurrentUser(data.user);
@@ -41,7 +41,7 @@ ServerUnfollowDeputy, LevelsFactory) {
 		console.log($scope.logged);
 		$state.go('app.browseDeputies')
 	}
-	
+
 	$scope.signInError = function(error) {
 		console.log(error);
 		$ionicPopup.alert({
@@ -79,7 +79,7 @@ ServerUnfollowDeputy, LevelsFactory) {
 		updateCurrentUser(user);
 		$state.go('app.userprofile')
 	}
-	
+
 	$scope.editUserError = function(error) {
 		$ionicPopup.alert({
 			title: 'Erro',
@@ -214,7 +214,7 @@ ServerUnfollowDeputy, LevelsFactory) {
   }
 
   $scope.serverUnfollowDeputyError = function (data) {
-    alert("Não foi possível deixar de seguir este deputado!");  
+    alert("Não foi possível deixar de seguir este deputado!");
     console.log("Não foi possível deixar de seguir este deputado!");
   }
 
