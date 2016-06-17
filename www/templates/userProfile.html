@@ -17,7 +17,7 @@
       <h2>Level {{currentUser.level.level_number}}</h2>
       <p>{{currentUser.level.level_description}}</p>
       <p>XP atual: {{currentUser.experience_points}}</p>
-      <div class="levelBar" ng-init=updateLevelBar()>
+      <div class="levelBar">
         <span style="width: {{levelPercentage}}%"></span>
       </div>
       <div id="minXpInfo">

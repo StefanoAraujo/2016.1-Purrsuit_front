@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.14% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/14</span>
+        <span class='fraction'>18/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.14% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/14</span>
+        <span class='fraction'>18/18</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -73,33 +73,49 @@
 28
 29
 30
-31</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+31
+32
+33
+34
+35
+36
+37
+38
+39</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,29 +123,37 @@
 &nbsp;
 // ALL -- Quests controller
 .controller('QuestsCtrl',['$scope','$stateParams','ServerQuests','ServerFindQuest',
-<span class="fstat-no" title="function not covered" >function($scope, $stateParams, ServerQuests, ServerFindQuest) {</span>
+function($scope, $stateParams, ServerQuests, ServerFindQuest) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $scope.getQuests = <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >    ServerQuests.get(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
-<span class="cstat-no" title="statement not covered" >        console.log("SERVICES: Getting Quests data from server...");</span>
-<span class="cstat-no" title="statement not covered" >        $scope.quests = data.quests;</span>
-      },
-<span class="fstat-no" title="function not covered" >      function(error) {</span>
-<span class="cstat-no" title="statement not covered" >        alert("Não foi possível estabelecer conexão com o servidor...");</span>
-<span class="cstat-no" title="statement not covered" >        console.log("SERVICES: ERROR in getting Quests data from server...");</span>
-      });
+  $scope.getQuests = function () {
+    ServerQuests.get($scope.serverQuests, $scope.serverQuestsError)
+	}
+	
+	$scope.serverQuests = function(data) {
+        console.log("SERVICES: Getting Quests data from server...");
+        $scope.quests = data.quests;
+	}
+  $scope.serverQuestsError = function(data) {
+        alert("Não foi possível estabelecer conexão com o servidor...");
+        console.log("SERVICES: ERROR in getting Quests data from server...");
   }
-<span class="cstat-no" title="statement not covered" >  $scope.singleQuest = <span class="fstat-no" title="function not covered" >function() {</span></span>
-<span class="cstat-no" title="statement not covered" >    var searchId = $stateParams.questId;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    ServerFindQuest.get({id: searchId}, <span class="fstat-no" title="function not covered" >function(data){</span></span>
-<span class="cstat-no" title="statement not covered" >      console.log("SERVICES: Getting Quest (Id: " + searchId + ") data from server");</span>
-<span class="cstat-no" title="statement not covered" >      $scope.quest = data.quest;</span>
-    },
-<span class="fstat-no" title="function not covered" >    function(error){</span>
-<span class="cstat-no" title="statement not covered" >      alert("Não foi possível estabelecer conexão com o servidor...");</span>
-<span class="cstat-no" title="statement not covered" >      console.log("SERVICES: ERROR in getting Quest (Id: " + searchId + ") data from server");</span>
-    })
+  $scope.singleQuest = function() {
+    var searchId = $stateParams.questId;
+&nbsp;
+    ServerFindQuest.get({
+			id: searchId
+		}, $scope.serverFindQuest, $scope.serverFindQuestError)
+	}
+		
+	$scope.serverFindQuest = function(data){
+		console.log("SERVICES: Getting Quest data from server");
+		$scope.quest = data.quest;
+  }
+	
+  $scope.serverFindQuestError = function(data){
+    alert("Não foi possível estabelecer conexão com o servidor...");
+    console.log("SERVICES: ERROR in getting Quest data from server");
   }
 &nbsp;
 }])
@@ -139,7 +163,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 09 2016 21:10:28 GMT-0300 (BRT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 17 2016 18:45:31 GMT-0300 (BRT)
 </div>
 </div>
 <script src="../prettify.js"></script>

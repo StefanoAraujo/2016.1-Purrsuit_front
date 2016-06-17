@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">44.44% </span>
+        <span class="strong">70% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/9</span>
+        <span class='fraction'>7/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>3/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">44.44% </span>
+        <span class="strong">70% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/9</span>
+        <span class='fraction'>7/10</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -222,24 +222,31 @@
 177
 178
 179
-180</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+180
+181
+182</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">74×</span>
+<span class="cline-any cline-yes">74×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">74×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">74×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -396,21 +403,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">74×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('starter.controllers', ['starter.services']);
+&nbsp;
+angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
 &nbsp;
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(<span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >    if (window.cordova &amp;&amp; window.cordova.plugins.Keyboard) {</span>
+  $ionicPlatform.ready(function() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (window.cordova &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >window.cordova.plugins.Keyboard)</span> {
 <span class="cstat-no" title="statement not covered" >      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);</span>
 <span class="cstat-no" title="statement not covered" >      cordova.plugins.Keyboard.disableScroll(true);</span>
 &nbsp;
     }
-<span class="cstat-no" title="statement not covered" >    if (window.StatusBar) {</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (window.StatusBar) {
       // org.apache.cordova.statusbar required
 <span class="cstat-no" title="statement not covered" >      StatusBar.styleDefault();</span>
     }
@@ -423,8 +429,8 @@
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/menu.html'
+    //controller: 'AppCtrl'
   })
 &nbsp;
   // Listing all quests
@@ -586,7 +592,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 09 2016 21:10:28 GMT-0300 (BRT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 17 2016 18:45:31 GMT-0300 (BRT)
 </div>
 </div>
 <script src="../prettify.js"></script>

@@ -1,3 +1,5 @@
+angular.module('starter.controllers', ['starter.services']);
+
 angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
 
 .run(function($ionicPlatform) {
@@ -20,8 +22,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/menu.html'
+    //controller: 'AppCtrl'
   })
 
   // Listing all quests

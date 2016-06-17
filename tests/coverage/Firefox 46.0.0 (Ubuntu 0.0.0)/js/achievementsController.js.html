@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/15</span>
+        <span class='fraction'>18/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/15</span>
+        <span class='fraction'>18/18</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -75,68 +75,83 @@
 30
 31
 32
-33</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+33
+34
+35
+36
+37
+38</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('starter')
 &nbsp;
 .controller('AchievementsCtrl', ['$scope','$stateParams','ServerAchievements', 'ServerFindAchv',
-<span class="fstat-no" title="function not covered" >function($scope, $stateParams, ServerAchievements, ServerFindAchv){</span>
+function($scope, $stateParams, ServerAchievements, ServerFindAchv){
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $scope.getAchievements =  <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >    ServerAchievements.get(<span class="fstat-no" title="function not covered" >function(data){</span></span>
-<span class="cstat-no" title="statement not covered" >      console.log("SERVICES: Getting achievements data from server...");</span>
-<span class="cstat-no" title="statement not covered" >      $scope.achievements = data.achievements;</span>
-    },
-<span class="fstat-no" title="function not covered" >    function(error){</span>
-<span class="cstat-no" title="statement not covered" >      alert("Não foi possível estabelecer conexão com o servidor...");</span>
-<span class="cstat-no" title="statement not covered" >      console.log("SERVICES: ERROR in getting Achievements data from server...");</span>
-    })
+  $scope.getAchievements =  function () {
+    ServerAchievements.get($scope.serverAchievements, $scope.serverAchievementsError)
+	}
+		
+	$scope.serverAchievements = function(data){
+      console.log("SERVICES: Getting achievements data from server...");
+      $scope.achievements = data.achievements;
+	}
+&nbsp;
+  $scope.serverAchievementsError =  function(data){
+      alert("Não foi possível estabelecer conexão com o servidor...");
+      console.log("SERVICES: ERROR in getting Achievements data from server...");
   }
 &nbsp;
-  // TODO: Remover os callbacks de dentro da chamada e criar funcoes de escopo
-<span class="cstat-no" title="statement not covered" >  $scope.singleAchievement =  <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >    var searchId = $stateParams.achvId;</span>
+  $scope.singleAchievement =  function () {
+    var searchId = $stateParams.achvId;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    ServerFindAchv.get({id: searchId}, $scope.findAchvSuccess ,</span>
-<span class="fstat-no" title="function not covered" >    function(error){</span>
-<span class="cstat-no" title="statement not covered" >      alert("Não foi possível estabelecer conexão com o servidor...");</span>
-<span class="cstat-no" title="statement not covered" >      console.log("SERVICES: ERROR in getting Achievement (Id: " + searchId + ") data from server...");</span>
-    })
+    ServerFindAchv.get({
+			id: searchId
+		}, $scope.serverFindAchv, $scope.serverFindAchvError)
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $scope.findAchvSuccess = <span class="fstat-no" title="function not covered" >function(data) {</span></span>
-<span class="cstat-no" title="statement not covered" >    console.log("SERVICES: Getting Achievement (Id: " + searchId + ") data from server...");</span>
-<span class="cstat-no" title="statement not covered" >    $scope.achievement = data.achievement;</span>
+  $scope.serverFindAchv = function(data) {
+    console.log("SERVICES: Getting Achievement data from server...");
+    $scope.achievement = data.achievement;
+  }
+&nbsp;
+  $scope.serverFindAchvError = function(data){
+      alert("Não foi possível estabelecer conexão com o servidor...");
+      console.log("SERVICES: ERROR in getting Achievement data from server...");
   }
 }])
 &nbsp;</pre></td></tr>
@@ -145,7 +160,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 09 2016 21:10:28 GMT-0300 (BRT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 17 2016 18:45:31 GMT-0300 (BRT)
 </div>
 </div>
 <script src="../prettify.js"></script>

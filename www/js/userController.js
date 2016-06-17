@@ -41,20 +41,25 @@ ServerUnfollowDeputy, LevelsFactory) {
       });
     });
   }
+
+
   //Log out
-  // Verificar a necessidade de usar a SESSION!!!
   $scope.logOut = function(){
-    // ONLY WORKS IF USER IS CONNECTED
-    /*var userId = $scope.currentUser.id;
-    console.log("LOGOUT: User (id: " + userId + ")...");*/
-    console.log("LOGOUT: Cleaning user session data...");
+    var confirmPopup = $ionicPopup.confirm({
+     title: 'Tem certeza sair?',
+     template: 'Nós iremos sentir sua falta... =('
+   });
 
-    $rootScope.user = {};
-
-    $rootScope.logged = false;
-
-    $state.go('index');
-  }
+   confirmPopup.then(function(res) {
+     if(res) {
+       console.log("LOGOUT: Cleaning user session data...");
+       $rootScope.user = {};
+       $rootScope.logged = false;
+       $state.go('index');
+     } else {
+     }
+   });
+ };
 
   //Edit
   $scope.editUser = function({id,user}){
@@ -108,7 +113,6 @@ ServerUnfollowDeputy, LevelsFactory) {
       })
   }
 
-  // Shouldn't be in a function?
   $scope.currentUser = $rootScope.user;
 
   $scope.updateLevelBar = function()
@@ -122,37 +126,41 @@ ServerUnfollowDeputy, LevelsFactory) {
     var diffXp = maxXp - minXp;
     var diffUserXp = userExp - minXp;
 
-    percentage = (100 * diffUserXp) / diffXp
+    percentage = (100 * diffUserXp) / diffXp;
     $scope.levelPercentage = percentage;
   }
 
   $scope.updateLevel = function(){
+    LevelsFactory.get($scope.serverUpdateLevelSucess, $scope.serverUpdateLevelError);
+  }
+
+  $scope.serverUpdateLevelSucess = function(data){
+    console.log("Getting Levels data from SERVER...");
     var userExp = $rootScope.user.experience_points;
+    var levelsData = data.levels;
 
-    LevelsFactory.get(function(data){
-      console.log("Getting Levels data from SERVER...");
-      var levelsData = data.levels;
+    for(var counter in levelsData)
+    {
+      var maxXp = levelsData[counter].xp_max;
+      var minXp = levelsData[counter].xp_min;
 
-      for(var counter in levelsData)
+      if(userExp <= maxXp && userExp >= minXp)
       {
-        var maxXp = levelsData[counter].xp_max;
-        var minXp = levelsData[counter].xp_min;
+        $rootScope.user.level = levelsData[counter];
+        $scope.updateLevelBar();
 
-        if(userExp <= maxXp && userExp >= minXp)
-        {
-          $rootScope.user.level = levelsData[counter];
-
-          // ONLY FOR THIS VERSION
-          break;
-        }
+        // ONLY FOR THIS VERSION
+        break;
       }
-    }, function(error){
-      console.log("ERROR: Could not get Levels data from SERVER...");
-    })
+    }
+  }
+
+  $scope.serverUpdateLevelError = function(error){
+    console.log("ERROR: Could not get Levels data from SERVER...");
   }
 
   $scope.addExperience = function(xpPoints){
-    $rootScope.user += xpPoints;
+    $rootScope.user.experience_points += xpPoints;
     $scope.updateLevel();
 
     // NEED: Fix EditUser function in Rails
@@ -203,7 +211,7 @@ ServerUnfollowDeputy, LevelsFactory) {
   }
 
   $scope.serverUnfollowDeputyError = function (data) {
-    alert("Não foi possível deixar de seguir este deputado!");  
+    alert("Não foi possível deixar de seguir este deputado!");
     console.log("Não foi possível deixar de seguir este deputado!");
   }
 

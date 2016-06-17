@@ -5,10 +5,11 @@ describe('UserController', function(){
   var $state;
 
   beforeEach(module('starter'));
-  beforeEach(inject(function(_$controller_, _$state_, _$ionicPopup_, _SignUp_,
+  beforeEach(inject(function(_$controller_,_$rootScope_, _$state_, _$ionicPopup_, _SignUp_,
      _LogInFactory_, _EditUser_, _LogOutFactory_, _DeleteUser_, _ServerFollowedDeputies_,
       _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_) {
     $controller = _$controller_;
+    $rootScope = _$rootScope_;
     $state = _$state_;
     $ionicPopup = _$ionicPopup_;
     SignUp = _SignUp_;
@@ -22,10 +23,6 @@ describe('UserController', function(){
     LevelsFactory = _LevelsFactory_;
   }));
 
-  beforeEach(inject(function(_$rootScope_){
-    $rootScope = _$rootScope_;
-  }));
-
   describe('Logout', function(){
     var $scope, $rootScope, controller;
 
@@ -36,25 +33,22 @@ describe('UserController', function(){
       {$scope: $scope, $rootScope: $rootScope});
     });
 
-    /*
-    it('should call login', function(){
-      var user = {email: "a@a.com", password: "123456"};
-      spyOn($scope, "signIn");
-      $scope.signIn(user);
-      expect($scope.signIn).toHaveBeenCalledWith(user);
-    }) */
-
-    it('sets the rootScope.user to undefined on sucess', function(){
-      // Login needs refactoring
-      var nullObject = {};
+    it("Should call confirmPopup", function(){
+      var popup = spyOn($ionicPopup, 'confirm').and.callThrough();
       $scope.logOut();
-      expect($rootScope.user).toEqual(nullObject);
+      expect(popup).toHaveBeenCalled();
     });
 
-    /*it('should go to main login page', function(){
-      spyOn($state, 'go');
+    it('sets the rootScope.user to undefined on sucess', function(){
       $scope.logOut();
-      expect($state.go).toHaveBeenCalledWith('login');
+      expect($rootScope.user).toEqual(undefined);
+    });
+
+    /*
+    it('should go to main login page', function(){
+      var teste = spyOn($state, 'go').and.callThrough();
+      $scope.logOut();
+      expect(teste).toHaveBeenCalled();
     })*/
 
   });
@@ -325,11 +319,93 @@ describe('UserController', function(){
     });
   });
 
+  describe("levelBarPercentage", function(){
+    var $scope, $rootScope, controller;
+
+    beforeEach(function() {
+      $scope = {};
+      $rootScope = {user: {level: {xp_max: 100, xp_min:0}, experience_points: 50}};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+        $rootScope: $rootScope
+      });
+    });
+
+    it("Should exist", function(){
+      $scope.updateLevelBar();
+    });
 
 
+    it("Should return 50% with MAX 100, MIN 0, EXP 50", function(){
+      $scope.updateLevelBar();
+      console.log("TEST Percentage Bar, expecting 50 - " + $scope.levelPercentage);
+      expect($scope.levelPercentage).toEqual(50);
+    });
+  });
 
+  describe("updateLevel", function(){
+    var $scope, $rootScope, controller;
 
+    beforeEach(function() {
+      $scope = {};
+      $rootScope = {user: {level: {level_number: 0}, experience_points: 50}};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+        $rootScope: $rootScope
+      });
 
+      spyOn(LevelsFactory, 'get');
+    });
+
+    it("Should exist", function(){
+      $scope.updateLevel();
+    });
+
+    it("Should call LevelsFactory.get", inject(function(LevelsFactory){
+      $scope.updateLevel();
+      expect(LevelsFactory.get).toHaveBeenCalled();
+    }));
+
+    /*
+    it("Should return level 1 for EXP 50", function(){
+      console.log($rootScope.user.level);
+      $scope.updateLevel();
+      console.log($rootScope.user.level);
+
+      expect($rootScope.user.level.level_number).toEqual(1);
+    });*/
+  });
+
+  describe("addExperience", function(){
+    var $scope, $rootScope, controller;
+
+    beforeEach(function() {
+      $scope = {};
+      $rootScope = {user: {level: {level_number: 0}, experience_points: 50}};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+        $rootScope: $rootScope
+      });
+
+      spyOn($scope, 'updateLevel');
+    });
+
+    it("Should exist", function(){
+      $scope.addExperience(0);
+    });
+
+    it("Should call updateLevel()", function(){
+      $scope.addExperience(0);
+      expect($scope.updateLevel).toHaveBeenCalled();
+    });
+
+    it("Should add +5XP", function(){
+      var initialXp = $rootScope.user.experience_points;
+      $scope.addExperience(5);
+      var diffXp = $rootScope.user.experience_points - 5;
+      expect(diffXp).toEqual(initialXp);
+    })
+  });
 
 
 });
