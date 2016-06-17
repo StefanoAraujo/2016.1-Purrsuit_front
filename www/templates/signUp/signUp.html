@@ -8,17 +8,40 @@
 	    <form ng-submit="signUp(user)">
 	      <div class="list">
 	        <label class="item item-input form">
-	          <input type="text" ng-model="user.nickname" placeholder="Nickname">
+	          <input type="text" name = "nickname" ng-model="user.nickname" placeholder="Nickname" required>
 	        </label>
+          <div class="warningLogin" ng-show="myForm.$submitted || myForm.username.$touched">
+            <span ng-show="myForm.nickname.$error.required">
+            <i class="icon icon ion-alert-circled"> </i>É necessário inserir seu Nickname
+            </span>
+          </div>
 	        <label class="item item-input form">
-	          <input type="text" ng-model="user.email" placeholder="E-mail">
+	          <input type="email" name="email" ng-model="user.email" placeholder="E-mail" required>
 	        </label>
+          <div class="warningLogin" ng-show="myForm.$submitted || myForm.username.$touched">
+            <span ng-show="myForm.email.$error.required">
+              <i class="icon icon ion-alert-circled"> </i>É necessário inserir seu e-mail!
+            </span>
+            <span ng-show="myForm.email.$error.email">
+              <i class="icon icon ion-alert-circled"> </i>É necessário digitar um e-mail válido!
+            </span>
+          </div>
 	        <label class="item item-input form">
-	          <input type="password" ng-model="user.password" placeholder="Senha">
+	          <input type="password" ng-model="user.password" placeholder="Senha" required>
 	        </label>
+          <div class="warningLogin" ng-show="myForm.$submitted || myForm.password.$touched">
+            <span ng-show="myForm.password.$error.required">
+              <i class="icon icon ion-alert-circled"> </i>Insira sua senha!
+            </span>
+          </div>
 	        <label class="item item-input form">
-	          <input type="password" ng-model="user.password_confirmation" placeholder="Confirme sua senha">
+	          <input type="password" ng-model="user.password_confirmation" placeholder="Confirme sua senha" required>
 	        </label>
+          <div class="warningLogin" ng-show="myForm.$submitted || myForm.password.$touched">
+            <span ng-show="myForm.password.$error.required">
+              <i class="icon icon ion-alert-circled"> </i>Confirme sua senha!
+            </span>
+          </div>
 	        <div class="padding">
 	          <button class="button button-block secondColor" type="submit">Criar Conta</button>
 	        </div>

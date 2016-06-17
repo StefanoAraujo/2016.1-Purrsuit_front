@@ -13,13 +13,13 @@
       <div class="list">
         <label class="item item-input form">
           <span class="input-label">E-mail</span>
-          <input type="email" name="username" ng-model="user.email" required="" />
+          <input type="email" name="email" ng-model="user.email" required="" />
         </label>
         <div class="warningLogin" ng-show="myForm.$submitted || myForm.username.$touched">
-          <span ng-show="myForm.username.$error.required">
+          <span ng-show="myForm.email.$error.required">
             <i class="icon icon ion-alert-circled"> </i>É necessário inserir seu e-mail!
           </span>
-          <span ng-show="myForm.username.$error.email">
+          <span ng-show="myForm.email.$error.email">
             <i class="icon icon ion-alert-circled"> </i>É necessário digitar um e-mail válido!
           </span>
         </div>

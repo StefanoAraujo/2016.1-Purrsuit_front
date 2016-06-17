@@ -66,9 +66,7 @@ ServerUnfollowDeputy, LevelsFactory) {
 
   //Edit
   $scope.editUser = function({id,user}){
-    console.log($scope.currentUser)
-    console.log({id,user});
-    EditUser.save({id,user}, $scope.editUserValid, $scope.editUserError)
+    EditUser.save({id: id, user}, $scope.editUserValid, $scope.editUserError)
 	}
 
 	$scope.editUserValid = function({id,user}){

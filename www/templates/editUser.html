@@ -4,7 +4,11 @@
       <div class="list">
         <p hidden="true">{{data.id = currentUser.id}}</p>
         <label class="item item-input">
-          <input type="text" ng-model="data.user.name" placeholder="{{currentUser.name}}">
+          <input type="text" ng-model="data.user.nickname" placeholder="{{currentUser.nickname}}">
+        </label>
+        <label> Sexo do usuário </label>
+        <label class="item item-input">
+          <input type="text" ng-model="data.user.gender" placeholder="">
         </label>
         <label class="item item-input">
           <input type="text" ng-model="data.user.email" placeholder="{{currentUser.email}}">

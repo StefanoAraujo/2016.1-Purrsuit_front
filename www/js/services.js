@@ -17,7 +17,9 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('EditUser', function($resource) {
-  return $resource(HOST + '/users/update')
+  return $resource(HOST + '/users/:id/update', {
+  id: "@id"
+  })
 })
 
 .factory('DeleteUser', function($resource) {
