@@ -1,4 +1,24 @@
 /* Empty. Add your own CSS if you like */
+.user-xp{
+	margin: 0 auto;
+	display: table;
+}
+.user-image{
+  transition: .3s;
+	width: 110px;
+	height: 110px;
+	border-radius: 100%;
+	margin: 0 auto;
+	display: table;
+	box-shadow: 2px 2px 2px #455A64;
+	margin-top: 1%;
+}
+.user-nickname{
+	margin: 0 auto;
+	display: table;
+	font-size: 20px;
+	margin-top: 15px;
+}
 .deputy-name{
 	margin-top: -79px;
 	color: white;

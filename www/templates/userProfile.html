@@ -1,43 +1,27 @@
 <ion-view cache-view="false" view-title="Perfil">
   <ion-content ng-init=updateLevel()>
+		<img class="user-image" ng-src="{{currentUser.level.image_url}}" />
+		<h2 class="user-nickname"> {{currentUser.nickname}} </h2><br>
+		<div class="levelBar">
+			<span style="width: {{levelPercentage}}%"></span>
+		</div>
+		<h5 class="user-xp"> {{currentUser.level.level_description}} (Level {{currentUser.level.level_number}})</h5>
+		<h6 class="user-xp"> {{currentUser.experience_points}}/{{currentUser.level.xp_max}} XP </h6>
     <div class="list card">
-      <h1 class="item item-icon-left">
+      <h1 class="item item-icon-left" ng-if="currentUser.name">
         <i class=" icon ion-person"></i>
-        {{currentUser.nickname}}
+        {{currentUser.name}}
       </h1>
-      <h1 class="item item-icon-left">
-        <i class=" icon ion-person"></i>
+      <h1 class="item item-icon-left" ng-if="currentUser.gender">
+        <i class="icon ion-woman" ng-if="currentUser.gender=='Feminino'"></i>
+				<i class="icon ion-man" ng-if="currentUser.gender=='Masculino'"></i>
         {{currentUser.gender}}
       </h1>
       <h2 class="item item-icon-left">
         <i class="icon ion-email"></i>
         {{currentUser.email}}
       </h2>
-
-
     </div>
-
-
-    <div class="item item-avatar">
-      <img ng-src="{{currentUser.level.image_url}}" />
-      <h2>Level {{currentUser.level.level_number}}</h2>
-      <p>{{currentUser.level.level_description}}</p>
-      <p>XP atual: {{currentUser.experience_points}}</p>
-      <div class="levelBar">
-        <span style="width: {{levelPercentage}}%"></span>
-      </div>
-      <div id="minXpInfo">
-        <p>
-          {{currentUser.level.xp_min}} XP
-        </p>
-      </div>
-      <div id="maxXpInfo">
-        <p>
-          {{currentUser.level.xp_max}} XP
-        </p>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col col-50">
         <button class="button button-positive icon ion-edit" ui-sref="app.edituser">
@@ -45,7 +29,7 @@
         </button>
       </div>
       <div class="col col-50">
-        <button class="button button-assertive icon ion-close" ng-click=d eleteUser(currentUser.id)>
+        <button class="button button-assertive icon ion-close" ng-click="deleteUser(currentUser.id)">
           Encerrar Conta
         </button>
       </div>
