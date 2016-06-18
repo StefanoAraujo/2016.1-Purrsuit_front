@@ -22,6 +22,7 @@ module.exports = function(config) {
       '../www/lib/angular-animate/angular-animate.min.js',
       '../node_modules/angular-mocks/angular-mocks.js',
 
+      '../www/js/app.js',
       '../www/js/**/*.js',
       './unit-tests/*.test.js'
     ],
