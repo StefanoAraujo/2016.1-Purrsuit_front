@@ -319,9 +319,136 @@ describe('UserController', function(){
     });
   });
 
-  describe("levelBarPercentage", function(){
-    var $scope, $rootScope, controller;
+  describe("signUp", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+      spyOn(SignUp, 'save');
+    });
 
+    it("Should exist", function() {
+      $scope.signUp('dummy');
+    });
+
+    it("Should call SignUp.save", inject(function(SignUp) {
+      var user = {
+        user: "ronaldo"
+      };
+      $scope.signUp(user);
+      expect(SignUp.save).toHaveBeenCalled();
+    }))
+  });
+
+  describe("signUpValid", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+      spyOn($state,'go');
+    });
+
+    it("Should exist", function() {
+      $scope.signUpValid('dummy');
+    });
+
+
+    it("Should call state.go", inject(function($state) {
+      var user = {
+      user: "ronaldo"
+      };
+      $scope.signUpValid(user);
+      expect($state.go).toHaveBeenCalled();
+      expect($state.go).toHaveBeenCalledWith('login');
+    }));
+  });
+
+  describe("signUpError", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.signUpError('dummy');
+    });
+  });
+
+
+    describe("signIn", function() {
+      var $scope, controller;
+      beforeEach(function() {
+        $scope = {};
+        controller = $controller("UserCtrl", {
+          $scope: $scope,
+        });
+        spyOn(LogInFactory, 'get');
+      });
+
+      it("Should exist", function() {
+        $scope.signIn('dummy');
+      });
+
+      it("Should call LogInFactory.get", inject(function(LogInFactory) {
+        var user = {
+          user: "ronaldo"
+        };
+        $scope.signIn(user);
+        expect(LogInFactory.get).toHaveBeenCalled();
+      }))
+    });
+
+    describe("signInValid", function() {
+      var $scope, controller;
+      beforeEach(function() {
+        $scope = {};
+        controller = $controller("UserCtrl", {
+          $scope: $scope,
+        });
+        spyOn($state,'go');
+      });
+
+      it("Should exist", function() {
+        $scope.signInValid('dummy');
+      });
+
+
+      it("Should call state.go", inject(function($state) {
+        var user = {
+          user: "ronaldo"
+        };
+        $scope.signInValid(user);
+        expect($state.go).toHaveBeenCalled();
+        expect($state.go).toHaveBeenCalledWith('app.browseDeputies');
+      }));
+
+
+
+    });
+
+    describe("signInError", function() {
+      var $scope, controller;
+      beforeEach(function() {
+        $scope = {};
+        controller = $controller("UserCtrl", {
+          $scope: $scope,
+        });
+      });
+
+      it("Should exist", function() {
+        $scope.signInError('dummy');
+      });
+    });
+
+describe("levelBarPercentage", function(){
+  var $scope, $rootScope, controller;
     beforeEach(function() {
       $scope = {};
       $rootScope = {user: {level: {xp_max: 100, xp_min:0}, experience_points: 50}};

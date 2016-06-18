@@ -8,7 +8,10 @@ ServerUnfollowDeputy, LevelsFactory) {
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
-    SignUp.save({user:user}, function(user) {
+    SignUp.save({user:user}, $scope.signUpValid, $scope.signUpError)
+	}
+
+	$scope.signUpValid = function(user) {
       $ionicPopup.alert({
         title: 'Sucesso',
         template: 'Conta criada com êxito!'
@@ -16,13 +19,15 @@ ServerUnfollowDeputy, LevelsFactory) {
       console.log(user)
       $state.go('login')
 
-    }, function(error) {
+	}
+
+	$scope.signUpError = function(error) {
       $ionicPopup.alert({
         title: 'Erro',
         template: 'Falha no cadastro, verifique se os dados estão corretos ou se o email ja foi cadastrado'
       });
-    });
-  }
+	}
+
 
   //Log in
   $scope.signIn = function(data){
@@ -41,6 +46,22 @@ ServerUnfollowDeputy, LevelsFactory) {
       });
     });
   }
+
+	$scope.signInValid = function(data) {
+		console.log(data);
+		updateCurrentUser(data.user);
+		$rootScope.logged = true;
+		console.log($scope.logged);
+		$state.go('app.browseDeputies')
+	}
+
+	$scope.signInError = function(error) {
+		console.log(error);
+		$ionicPopup.alert({
+			title: 'Oops!',
+			template: 'O email e/ou a senha estão incorretos.\nPor favor, tente novamente!'
+		});
+	}
 
 
   //Log out
@@ -63,23 +84,24 @@ ServerUnfollowDeputy, LevelsFactory) {
 
   //Edit
   $scope.editUser = function({id,user}){
-    console.log($scope.currentUser)
-    console.log({id,user});
-    EditUser.save({id,user}, function({id,user}){
-      $ionicPopup.alert({
-        title: 'Sucesso',
-        template: 'Dados alterados com êxito!'
-      });
-      updateCurrentUser(user);
-      $state.go('app.userprofile')
+    EditUser.save({id: id, user}, $scope.editUserValid, $scope.editUserError)
+	}
 
-    }, function(error) {
-      $ionicPopup.alert({
-        title: 'Erro',
-        template: 'Verifique se os dados estão corretos ou se o email ja foi cadastrado'
-      })
-    })
-  }
+	$scope.editUserValid = function({id,user}){
+		$ionicPopup.alert({
+			title: 'Sucesso',
+			template: 'Dados alterados com êxito!'
+		});
+		updateCurrentUser(user);
+		$state.go('app.userprofile')
+	}
+
+	$scope.editUserError = function(error) {
+		$ionicPopup.alert({
+			title: 'Erro',
+			template: 'Verifique se os dados estão corretos ou se o email ja foi cadastrado'
+		})
+	}
 
   updateCurrentUser = function(data){
     $rootScope.user = data;
