@@ -17,7 +17,7 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('EditUser', function($resource) {
-  return $resource(HOST + '/users/:id/update', {
+  return $resource(HOST + '/users/:id/update.json', {
   id: "@id"
   })
 })
