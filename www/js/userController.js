@@ -30,22 +30,10 @@ ServerUnfollowDeputy, LevelsFactory) {
 
 
   //Log in
-  $scope.signIn = function(data){
-    LogInFactory.get(data, function(data) {
-      console.log(data);
-      updateCurrentUser(data.user);
-      $rootScope.logged = true;
-      console.log($scope.logged);
-      $state.go('app.browseDeputies')
-
-    }, function(error) {
-      console.log(error);
-      $ionicPopup.alert({
-        title: 'Oops!',
-        template: 'O email e/ou a senha estão incorretos.\nPor favor, tente novamente!'
-      });
-    });
+  $scope.signIn = function(data) {
+    LogInFactory.get(data, $scope.signInValid, $scope.signInError)
   }
+
 
 	$scope.signInValid = function(data) {
 		console.log(data);

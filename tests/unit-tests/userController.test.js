@@ -534,5 +534,72 @@ describe("levelBarPercentage", function(){
     })
   });
 
+  describe("editUser", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+      spyOn(EditUser, 'save');
+    });
+
+    it("Should exist", function() {
+      $scope.editUser('dummy',10);
+    });
+
+    it("Should call EditUser.save", inject(function(EditUser) {
+      var id = 10;
+      var user = {
+        user: "ronaldo"
+      };
+      $scope.editUser(id,user);
+      expect(EditUser.save).toHaveBeenCalled();
+    }))
+  });
+
+  describe("editUserValid", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+      spyOn($state,'go');
+    });
+
+    it("Should exist", function() {
+      $scope.editUserValid('dummy',10);
+    });
+
+
+    it("Should call state.go", inject(function($state) {
+      var id = 10;
+      var user = {
+      user: "ronaldo"
+      };
+      $scope.editUserValid(user, id);
+      expect($state.go).toHaveBeenCalled();
+      expect($state.go).toHaveBeenCalledWith('app.userprofile');
+    }));
+  });
+
+  describe("editUserError", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.editUserError('dummy');
+    });
+  });
+
+
+
+
 
 });
