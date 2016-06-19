@@ -28,7 +28,7 @@ angular.module('starter')
 
     $scope.serverFindDeputy = function(data) {
       console.log("SERVICES: Getting Deputy data from server...");
-      $scope.deputy = data.deputy;
+      $scope.deputy = data.deputy_details;
     }
     $scope.serverFindDeputyError = function(data) {
       alert("Não foi possível estabelecer conexão com o servidor...");
