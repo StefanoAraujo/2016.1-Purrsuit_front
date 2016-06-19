@@ -191,16 +191,17 @@ ServerUnfollowDeputy, LevelsFactory) {
     alert("Não foi possível estabelecer conexão com o servidor...");
   }
 
-  $scope.followDeputy = function(deputyId) {
+  $scope.followDeputy = function(deputy) {
     var userId = $scope.currentUser.id;
+    var deputyId = deputy.id;
     var data = {deputyId, userId, id: userId};
     ServerFollowDeputy.save(data, $scope.serverFollowDeputy, $scope.serverFollowDeputyError)
+    deputy.followers_count += 1;
   }
 
   $scope.serverFollowDeputy = function (data) {
     console.log("Deputy followed!");
     $rootScope.isFollowed = true;
-    //$state.go($state.current, {}, {reload: true});
   }
 
   $scope.serverFollowDeputyError = function (data) {
@@ -208,10 +209,12 @@ ServerUnfollowDeputy, LevelsFactory) {
 
   }
 
-  $scope.unfollowDeputy = function(deputyId) {
+  $scope.unfollowDeputy = function(deputy) {
     var userId = $scope.currentUser.id;
+    var deputyId = deputy.id;
     var data = {deputyId, userId, id: userId};
     ServerUnfollowDeputy.save(data, $scope.serverUnfollowDeputy, $scope.serverUnfollowDeputyError)
+    deputy.followers_count -= 1;
   }
 
   $scope.serverUnfollowDeputy = function (data) {
