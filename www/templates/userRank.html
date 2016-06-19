@@ -1,0 +1,15 @@
+<ion-view view-title="Ranking" ng-controller = "UserCtrl">
+  <ion-content>
+    <div class="list" ng-controller = "getUserRank">
+
+      <a collection-repeat="itemUser in users"
+                    class="item item-avatar item-icon-right">
+        <img ng-src="{{itemUser.level.image_url}}">
+        <i class="icon ion-ribbon-b" ng-if="itemUser == users[0]"></i>
+        <h2>{{itemUser.nickname}}</h2>
+        <h4>{{itemUser.experience_points}}</h4>
+      </a>
+
+    </div>
+  </ion-content>
+</ion-view>

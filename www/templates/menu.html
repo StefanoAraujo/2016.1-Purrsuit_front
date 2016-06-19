@@ -26,12 +26,15 @@
         <a menu-close class="item item-icon-left" href="#/app/browseDeputies">
           <i class="icon ion-person-stalker"></i> Deputados
         </a>
-        <a menu-close class="item item-icon-left" href="#/app/followedDeputies">
+        <a menu-close class="item item-icon-left" href="#/app/followedDeputies" ng-if="logged">
           <i class="icon ion-star"></i> Deputados Seguidos
         </a>
         <div class="item item-divider" ng-if="logged">
           Conquistas
         </div>
+        <a menu-close class="item item-icon-left" href="#/app/rankuser">
+          <i class="icon ion-podium"></i> Rank
+        </a>
         <a menu-close class="item item-icon-left" href="#/app/quests" ng-if="logged">
           <i class="icon ion-ios-game-controller-b"></i> Quests
         </a>

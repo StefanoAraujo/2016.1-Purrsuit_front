@@ -8,6 +8,10 @@ angular.module('starter.services', ['ngResource'])
   return $resource(HOST + '/signIn')
 }])
 
+.factory('RankFactory', function($resource) {
+  return $resource(HOST + '/users/ranking')
+})
+
 .factory('SignUp', function($resource) {
   return $resource(HOST + '/users/create')
 })

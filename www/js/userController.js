@@ -2,9 +2,9 @@ angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
 'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy',
-'ServerUnfollowDeputy','LevelsFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,
+'ServerUnfollowDeputy','LevelsFactory', 'RankFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,
 LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy,
-ServerUnfollowDeputy, LevelsFactory) {
+ServerUnfollowDeputy, LevelsFactory, RankFactory) {
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
@@ -27,8 +27,21 @@ ServerUnfollowDeputy, LevelsFactory) {
         template: 'Falha no cadastro, verifique se os dados estão corretos ou se o email ja foi cadastrado'
       });
 	}
+  //Ranking
+  $scope.getUserRank = function(){
+    RankFactory.get($scope.getRank, $scope.getRankError)
+  }
 
+  $scope.getRank = function(data){
+    console.log("SERVICES: Getting Users data from server...")
+    $scope.users = data.users;
+  }
 
+  $scope.getRankError = function(data){
+    alert("Não foi possível estabelecer conexão com o servidor...");
+    console.log("SERVICES: ERROR in getting Deputies data from server...");
+  }
+  
   //Log in
   $scope.signIn = function(data) {
     LogInFactory.get(data, $scope.signInValid, $scope.signInError)
