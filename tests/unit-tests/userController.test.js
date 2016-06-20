@@ -7,7 +7,7 @@ describe('UserController', function(){
   beforeEach(module('starter'));
   beforeEach(inject(function(_$controller_,_$rootScope_, _$state_, _$ionicPopup_, _SignUp_,
      _LogInFactory_, _EditUser_, _LogOutFactory_, _DeleteUser_, _ServerFollowedDeputies_,
-      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_) {
+      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_, _RankFactory_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     $state = _$state_;
@@ -21,6 +21,7 @@ describe('UserController', function(){
     ServerFollowDeputy = _ServerFollowDeputy_;
     ServerUnfollowDeputy = _ServerUnfollowDeputy_;
     LevelsFactory = _LevelsFactory_;
+		RankFactory = _RankFactory_;
   }));
 
   describe('Logout', function(){
@@ -598,8 +599,60 @@ describe("levelBarPercentage", function(){
     });
   });
 
+	describe("getUserRank", function() {
+		var $scope, controller;
+		
+		beforeEach(function() {
+			$scope = {};
+			controller = $controller("UserCtrl", {
+				$scope: $scope
+			});
+			
+			spyOn(RankFactory, 'get');
+		});
 
-
-
-
+		it("Should exist", function() {
+			$scope.getUserRank();
+		});
+		
+		it("Should call RankFactory.get", inject(function(RankFactory) {
+			$scope.getUserRank();
+			
+			expect(RankFactory.get).toHaveBeenCalled();
+		}));
+	});
+	
+	describe("getRank", function() {
+		var $scope, controller;
+		beforeEach(function() {
+			$scope = {};
+			controller = $controller("UserCtrl", {
+				$scope: $scope
+			});
+		});
+		
+		it("Should exist", function() {
+			$scope.getRank("dummy");
+		});
+	});
+	
+	describe("getRankError", function() {
+		var $scope, controller;
+		beforeEach(function() {
+			$scope = {};
+			controller = $controller("UserCtrl", {
+				$scope: $scope
+			});
+		});
+		
+		it("Should exist", function() {
+			$scope.getRankError('dummy');
+		});
+	
+		it("Should show alert", function() {
+			spyOn(window, 'alert');
+			$scope.getRankError('dummy');
+			expect(window.alert).toHaveBeenCalledWith("Não foi possível estabelecer conexão com o servidor...");
+		});
+	});
 });
