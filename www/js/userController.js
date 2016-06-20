@@ -140,6 +140,22 @@ ServerUnfollowDeputy, LevelsFactory) {
     $scope.levelPercentage = percentage;
   }
 
+  $scope.updateUserServerData = function(){
+    var id = $rootScope.user.id;
+    var user = $rootScope.user;
+
+    EditUser.save({id: id, user}, $scope.updateUserServerDataSuccess,
+        $scope.updateUserServerDataError);
+  }
+
+  $scope.updateUserServerDataSuccess = function(){
+    console.log("UPDATE USER DATA: User data uploaded!");
+  }
+
+  $scope.updateUserServerDataError = function(){
+    console.log("UPDATE USER DATA: Could not upload user data!");
+  }
+
   $scope.updateLevel = function(){
     LevelsFactory.get($scope.serverUpdateLevelSucess, $scope.serverUpdateLevelError);
   }
@@ -158,8 +174,6 @@ ServerUnfollowDeputy, LevelsFactory) {
       {
         $rootScope.user.level = levelsData[counter];
         $scope.updateLevelBar();
-
-        // ONLY FOR THIS VERSION
         break;
       }
     }
@@ -173,6 +187,7 @@ ServerUnfollowDeputy, LevelsFactory) {
     $rootScope.user.experience_points += xpPoints;
     $scope.updateLevel();
 
+    $scope.updateUserServerData($rootScope.user);
     // NEED: Fix EditUser function in Rails
   }
 
