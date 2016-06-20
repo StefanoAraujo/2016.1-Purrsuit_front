@@ -2,9 +2,24 @@ angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
 'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy',
-'ServerUnfollowDeputy','LevelsFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,
+'ServerUnfollowDeputy','LevelsFactory','ReceiveQuests',function($scope, $rootScope, $state, $ionicPopup, SignUp,
 LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy,
-ServerUnfollowDeputy, LevelsFactory) {
+ServerUnfollowDeputy, LevelsFactory, ReceiveQuests) {
+
+  //Receive Quests
+  $scope.receiveQuests = function(userId,questsAmount) {
+    data = {userId,questsAmount};
+    ReceiveQuests.get(data, $scope.receiveSuccess, $scope.receiveError)
+  }
+
+  $scope.receiveSuccess = function(data){
+    console.log("Receiving quests from server...");
+  }
+
+  $scope.receiveError = function(error){
+    alert("Não foi possível estabelecer conexão com o servidor...");
+  }
+
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
@@ -16,8 +31,10 @@ ServerUnfollowDeputy, LevelsFactory) {
         title: 'Sucesso',
         template: 'Conta criada com êxito!'
       });
-      console.log(user)
-      $state.go('login')
+      console.log(user);
+      var userId = user.user.id;
+      $scope.receiveQuests(userId,3);
+      $state.go('login');
 
 	}
 

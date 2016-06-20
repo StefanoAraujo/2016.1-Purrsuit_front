@@ -1,20 +1,21 @@
 angular.module('starter')
 
 // ALL -- Quests controller
-.controller('QuestsCtrl',['$scope','$stateParams','ServerQuests','ServerFindQuest',
-function($scope, $stateParams, ServerQuests, ServerFindQuest) {
+.controller('QuestsCtrl',['$scope','$rootScope','$stateParams','ReceivedQuests','ServerFindQuest',
+function($scope, $rootScope, $stateParams, ReceivedQuests, ServerFindQuest) {
 
-  $scope.getQuests = function () {
-    ServerQuests.get($scope.serverQuests, $scope.serverQuestsError)
+  $scope.getQuests = function (userId) {
+    ReceivedQuests.get({userId}, $scope.serverQuests, $scope.serverQuestsError)
 	}
-	
+
 	$scope.serverQuests = function(data) {
-        console.log("SERVICES: Getting Quests data from server...");
-        $scope.quests = data.quests;
+    console.log("SERVICES: Getting Quests data from server...");
+    $rootScope.quests = data.quests;
 	}
+
   $scope.serverQuestsError = function(data) {
-        alert("Não foi possível estabelecer conexão com o servidor...");
-        console.log("SERVICES: ERROR in getting Quests data from server...");
+    alert("Não foi possível estabelecer conexão com o servidor...");
+    console.log("SERVICES: ERROR in getting Quests data from server...");
   }
 
   $scope.singleQuest = function() {
@@ -24,12 +25,12 @@ function($scope, $stateParams, ServerQuests, ServerFindQuest) {
 			id: searchId
 		}, $scope.serverFindQuest, $scope.serverFindQuestError)
 	}
-		
+
 	$scope.serverFindQuest = function(data){
 		console.log("SERVICES: Getting Quest data from server");
 		$scope.quest = data.quest;
   }
-	
+
   $scope.serverFindQuestError = function(data){
     alert("Não foi possível estabelecer conexão com o servidor...");
     console.log("SERVICES: ERROR in getting Quest data from server");
