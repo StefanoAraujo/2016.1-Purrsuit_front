@@ -26,7 +26,7 @@
         <a menu-close class="item item-icon-left" href="#/app/browseDeputies">
           <i class="icon ion-person-stalker"></i> Deputados
         </a>
-        <a menu-close class="item item-icon-left" href="#/app/followedDeputies">
+        <a menu-close class="item item-icon-left" href="#/app/followedDeputies" ng-if="logged">
           <i class="icon ion-star"></i> Deputados Seguidos
         </a>
         <div class="item item-divider" ng-if="logged">
@@ -34,6 +34,9 @@
         </div>
         <a menu-close class="item item-icon-left" href="#/app/quests" ng-if="logged" ng-controller="QuestsCtrl" ng-click="getQuests(user.id)">
           <i class="icon ion-ios-game-controller-b"></i> Minhas Quests
+        </a>
+        <a menu-close class="item item-icon-left" href="#/app/rankuser">
+          <i class="icon ion-podium"></i> Rank
         </a>
         <a menu-close class="item item-icon-left" href="#/app/achievements" ng-if="logged">
           <i class="icon ion-trophy"></i> Achievements
