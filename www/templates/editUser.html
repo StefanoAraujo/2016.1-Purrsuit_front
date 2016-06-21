@@ -1,18 +1,37 @@
 <ion-view view-title="Alterar dados">
   <ion-content>
+    <img class="user-image" ng-src="{{currentUser.level.image_url}}" />
+    <h2 class="user-nickname"> {{currentUser.nickname}} </h2><br>
+    <div class="levelBar" ng-init=updateLevelBar()>
+      <span style="width: {{levelPercentage}}%"></span>
+    </div>
+    <h5 class="user-xp"> {{currentUser.level.level_description}} (Level {{currentUser.level.level_number}})</h5>
+    <h6 class="user-xp"> {{currentUser.experience_points}}/{{currentUser.level.xp_max}} XP </h6><br>
     <form ng-submit="editUser(data)" >
       <div class="list">
         <p hidden="true">{{data.id = currentUser.id}}</p>
-        <label class="item item-input">
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label"> Nome</span>
+          <input type="text" ng-model="data.user.name" placeholder="{{currentUser.name}}">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+					<span class="input-label"> Nickname </span>
           <input type="text" ng-model="data.user.nickname" placeholder="{{currentUser.nickname}}">
         </label>
-        <label> Sexo do usuário </label>
-        <label class="item item-input">
-          <input type="text" ng-model="data.user.gender" placeholder="">
-        </label>
-        <label class="item item-input">
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label"> E-mail</span>
           <input type="text" ng-model="data.user.email" placeholder="{{currentUser.email}}">
         </label>
+
+				<label class="item item-stacked-label">
+					<span class="input-label"> Sexo </span>
+				  <ion-radio ng-model="data.user.gender" ng-value="'Feminino'">Feminino</ion-radio>
+				  <ion-radio ng-model="data.user.gender" ng-value="'Masculino'">Masculino</ion-radio>
+				</label>
+
         <label>
           <button class="button button-block button-positive" type="submit">Salvar</button>
         </label>

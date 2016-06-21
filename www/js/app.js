@@ -133,6 +133,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     }
   })
 
+  //Ranking users
+  .state('app.rankuser', {
+    url: "/rankuser",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/userRank.html",
+        controller: 'UserCtrl'
+      }
+    }
+  })
+
   //Log out
   .state('app.logout', {
     url: "/logout",
