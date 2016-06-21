@@ -195,3 +195,7 @@
 	margin-right: 22px;
 
 }
+
+.tabs-positive > .tabs{
+background-color: #607D8B !important;
+}
