@@ -26,11 +26,11 @@ ion-slide:nth-child(2n) {
 }
 
 .slidingTabs ul li {
+		width: 50%;
     height: 48px;
     line-height: 48px;
     text-align: center;
     float: left;
-    margin-left: 19%;
     padding: 0 12px 20px 12px;
     font-size: 11px;
     text-transform: uppercase;
@@ -48,7 +48,7 @@ ion-slide:nth-child(2n) {
 .slidingTabs ul li .ink {
     display: block;
     position: absolute;
-    background: rgba(56, 147, 245, 0.8);
+    background: #FF5252;
     border-radius: 100%;
     transform: scale(0);
 }
