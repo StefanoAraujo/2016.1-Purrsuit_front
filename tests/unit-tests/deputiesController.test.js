@@ -118,10 +118,10 @@ describe("DeputiesCtrl", function() {
     });
 
     it("Should call ServerFindDeputy.get", inject(function(ServerFindDeputy) {
-      var deputy = {
-        deputy: "dummy"
+      var deputy_details = {
+        deputy_details: "dummy"
       }
-      $scope.serverFindDeputy(deputy);
+      $scope.serverFindDeputy(deputy_details);
 
       expect($scope.deputy).toBe("dummy");
     }));

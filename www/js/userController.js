@@ -41,7 +41,7 @@ ServerUnfollowDeputy, LevelsFactory, RankFactory) {
     alert("Não foi possível estabelecer conexão com o servidor...");
     console.log("SERVICES: ERROR in getting Deputies data from server...");
   }
-  
+
   //Log in
   $scope.signIn = function(data) {
     LogInFactory.get(data, $scope.signInValid, $scope.signInError)
@@ -68,20 +68,28 @@ ServerUnfollowDeputy, LevelsFactory, RankFactory) {
   //Log out
   $scope.logOut = function(){
     var confirmPopup = $ionicPopup.confirm({
-     title: 'Tem certeza sair?',
-     template: 'Nós iremos sentir sua falta... =('
-   });
+        title: 'Tem certeza sair?',
+        template: 'Nós iremos sentir sua falta... =('
+    });
+    $scope.logOutSuccess(confirmPopup);
+   };
 
-   confirmPopup.then(function(res) {
-     if(res) {
+   $scope.logOutSuccess = function (confirmPopup) {
+     confirmPopup.then($scope.logOutResponse, $scope.logOutResponseError);
+   }
+
+   $scope.logOutResponse = function (res) {
+     if(res == true) {
        console.log("LOGOUT: Cleaning user session data...");
        $rootScope.user = {};
        $rootScope.logged = false;
        $state.go('index');
-     } else {
      }
-   });
- };
+   }
+   $scope.logOutResponseError = function () {
+
+   }
+
 
   //Edit
   $scope.editUser = function({id,user}){
@@ -110,7 +118,6 @@ ServerUnfollowDeputy, LevelsFactory, RankFactory) {
 
   //Delete
   $scope.deleteUser = function(id){
-    console.log(id);
 
     var confirmPopup = $ionicPopup.confirm({
       title: 'Atenção!',
@@ -193,6 +200,7 @@ ServerUnfollowDeputy, LevelsFactory, RankFactory) {
   }
 
   $scope.serverUpdateLevelError = function(error){
+    alert("Não foi possível atualizar level do usuário");
     console.log("ERROR: Could not get Levels data from SERVER...");
   }
 
