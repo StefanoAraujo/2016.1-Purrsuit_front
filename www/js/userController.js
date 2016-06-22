@@ -86,20 +86,28 @@ angular.module('starter')
   //Log out
   $scope.logOut = function(){
     var confirmPopup = $ionicPopup.confirm({
-     title: 'Tem certeza sair?',
-     template: 'Nós iremos sentir sua falta... =('
-   });
+        title: 'Tem certeza sair?',
+        template: 'Nós iremos sentir sua falta... =('
+    });
+    $scope.logOutSuccess(confirmPopup);
+   };
 
-   confirmPopup.then(function(res) {
-     if(res) {
+   $scope.logOutSuccess = function (confirmPopup) {
+     confirmPopup.then($scope.logOutResponse, $scope.logOutResponseError);
+   }
+
+   $scope.logOutResponse = function (res) {
+     if(res == true) {
        console.log("LOGOUT: Cleaning user session data...");
        $rootScope.user = {};
        $rootScope.logged = false;
        $state.go('index');
-     } else {
      }
-   });
- };
+   }
+   $scope.logOutResponseError = function () {
+
+   }
+
 
   //Edit
   $scope.editUser = function({id,user}){
@@ -128,7 +136,6 @@ angular.module('starter')
 
   //Delete
   $scope.deleteUser = function(id){
-    console.log(id);
 
     var confirmPopup = $ionicPopup.confirm({
       title: 'Atenção!',
@@ -171,6 +178,22 @@ angular.module('starter')
     $scope.levelPercentage = percentage;
   }
 
+  $scope.updateUserServerData = function(){
+    var id = $rootScope.user.id;
+    var user = $rootScope.user;
+
+    EditUser.save({id: id, user}, $scope.updateUserServerDataSuccess,
+        $scope.updateUserServerDataError);
+  }
+
+  $scope.updateUserServerDataSuccess = function(){
+    console.log("UPDATE USER DATA: User data uploaded!");
+  }
+
+  $scope.updateUserServerDataError = function(){
+    console.log("UPDATE USER DATA: Could not upload user data!");
+  }
+
   $scope.updateLevel = function(){
     LevelsFactory.get($scope.serverUpdateLevelSucess, $scope.serverUpdateLevelError);
   }
@@ -189,14 +212,13 @@ angular.module('starter')
       {
         $rootScope.user.level = levelsData[counter];
         $scope.updateLevelBar();
-
-        // ONLY FOR THIS VERSION
         break;
       }
     }
   }
 
   $scope.serverUpdateLevelError = function(error){
+    alert("Não foi possível atualizar level do usuário");
     console.log("ERROR: Could not get Levels data from SERVER...");
   }
 
@@ -204,6 +226,7 @@ angular.module('starter')
     $rootScope.user.experience_points += xpPoints;
     $scope.updateLevel();
 
+    $scope.updateUserServerData($rootScope.user);
     // NEED: Fix EditUser function in Rails
   }
 
@@ -222,16 +245,17 @@ angular.module('starter')
     alert("Não foi possível estabelecer conexão com o servidor...");
   }
 
-  $scope.followDeputy = function(deputyId) {
+  $scope.followDeputy = function(deputy) {
     var userId = $scope.currentUser.id;
+    var deputyId = deputy.id;
     var data = {deputyId, userId, id: userId};
     ServerFollowDeputy.save(data, $scope.serverFollowDeputy, $scope.serverFollowDeputyError)
+    deputy.followers_count += 1;
   }
 
   $scope.serverFollowDeputy = function (data) {
     console.log("Deputy followed!");
     $rootScope.isFollowed = true;
-    //$state.go($state.current, {}, {reload: true});
   }
 
   $scope.serverFollowDeputyError = function (data) {
@@ -239,10 +263,12 @@ angular.module('starter')
 
   }
 
-  $scope.unfollowDeputy = function(deputyId) {
+  $scope.unfollowDeputy = function(deputy) {
     var userId = $scope.currentUser.id;
+    var deputyId = deputy.id;
     var data = {deputyId, userId, id: userId};
     ServerUnfollowDeputy.save(data, $scope.serverUnfollowDeputy, $scope.serverUnfollowDeputyError)
+    deputy.followers_count -= 1;
   }
 
   $scope.serverUnfollowDeputy = function (data) {

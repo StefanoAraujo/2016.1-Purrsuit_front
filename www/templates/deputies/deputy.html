@@ -1,73 +1,89 @@
-<ion-view cache-view = "false">
+<ion-view cache-view="false">
 	<div ng-controller="UserCtrl">
-    <div class="deputyPerfil"></div>
-    <img class="deputyImage" src="{{deputy.image_path}}"/>
-		<button class="button button-balanced follow-button icon ion-person-add" ng-click=followDeputy(deputy.id)
-		ng-hide="isFollowed">
+		<div class="deputyPerfil"></div>
+		<img class="deputyImage" src="{{deputy.image_path}}" />
+		<button class="button button-balanced follow-button icon ion-person-add" ng-click=followDeputy(deputy) ng-hide="isFollowed">
 			Seguir
 		</button>
-		<button class="button button-assertive follow-button icon ion-sad" ng-click=unfollowDeputy(deputy.id)
-		ng-show="isFollowed">
+		<button class="button button-assertive follow-button icon ion-sad" ng-click=unfollowDeputy(deputy) ng-show="isFollowed">
 			Deixar de Seguir
 		</button>
 		<h2 class="deputy-name"> {{deputy.deputy_name}} </h2>
 	</div>
-  <ion-content class="attributes" scroll="true" ng-controller="singleDeputy">
-		<div class="card">
-			<div class="item item-divider">
-				Número de seguidores
-			</div>
-			<div class="item item-text-wrap">
-				{{deputy.followers_count}}
-			</div>
-		</div>
-		<div class="card">
-		  <div class="item item-divider">
-		    Nome completo
-		  </div>
-		  <div class="item item-text-wrap">
-		    {{deputy.name}}
-		  </div>
-		</div>
-    <div class="card">
-      <div class="item item-divider">
-        Partido
-      </div>
-      <div class="item item-text-wrap">
-        {{deputy.party.name}}
-      </div>
-    </div>
-    <div class="card">
-      <div class="item item-divider">
-        Unidade Federativa
-      </div>
-      <div class="item item-text-wrap">
-        {{deputy.uf.name}}
-      </div>
-    </div>
-    <div class="card">
-      <div class="item item-divider">
-        E-mail
-      </div>
-      <div class="item item-text-wrap">
-        {{deputy.email}}
-      </div>
-    </div>
-    <div class="card">
-      <div class="item item-divider">
-        Situação
-      </div>
-      <div class="item item-text-wrap">
-        {{deputy.legislation_situation}}
-      </div>
-    </div>
-    <div class="card">
-      <div class="item item-divider">
-				Registro
-      </div>
-      <div class="item item-text-wrap">
-        {{deputy.registration}}
-      </div>
-    </div>
-  </ion-content>
+
+	<ion-content class="attributes" scroll="true" ng-controller="singleDeputy">
+		<ion-slide-box show-pager="false" ion-slide-tabs>
+
+			<ion-slide ion-slide-tab-label="Deputado">
+				<div class="card">
+					<div class="item item-divider">
+						Número de seguidores
+					</div>
+					<div class="item item-text-wrap">
+						{{deputy.followers_count}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Nome completo
+					</div>
+					<div class="item item-text-wrap">
+						{{deputy.name}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Partido
+					</div>
+					<div class="item item-text-wrap">
+						{{deputy.party.name}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Unidade Federativa
+					</div>
+					<div class="item item-text-wrap">
+						{{deputy.uf.name}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						E-mail
+					</div>
+					<div class="item item-text-wrap">
+						{{deputy.email}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Situação
+					</div>
+					<div class="item item-text-wrap">
+						{{deputy.legislation_situation}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Registro
+					</div>
+					<div class="item item-text-wrap">
+						{{deputy.registration}}
+					</div>
+				</div>
+			</ion-slide>
+
+			<ion-slide ion-slide-tab-label="Gastos">
+				<div class="card">
+					<div class="item item-divider">
+						Gasto
+					</div>
+					<div class="item item-text-wrap">
+						0 R$
+					</div>
+				</div>
+			</ion-slide>
+
+		</ion-slide-box>
+	</ion-content>
 </ion-view>

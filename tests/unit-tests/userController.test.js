@@ -7,7 +7,7 @@ describe('UserController', function(){
   beforeEach(module('starter'));
   beforeEach(inject(function(_$controller_,_$rootScope_, _$state_, _$ionicPopup_, _SignUp_,
      _LogInFactory_, _EditUser_, _LogOutFactory_, _DeleteUser_, _ServerFollowedDeputies_,
-      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_) {
+      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_, _RankFactory_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     $state = _$state_;
@@ -21,16 +21,18 @@ describe('UserController', function(){
     ServerFollowDeputy = _ServerFollowDeputy_;
     ServerUnfollowDeputy = _ServerUnfollowDeputy_;
     LevelsFactory = _LevelsFactory_;
+		RankFactory = _RankFactory_;
   }));
 
-  describe('Logout', function(){
+  describe('logOut', function(){
     var $scope, $rootScope, controller;
-
     beforeEach(function(){
       $scope = {};
       $rootScope = {};
-      controller = $controller('UserCtrl',
-      {$scope: $scope, $rootScope: $rootScope});
+      controller = $controller('UserCtrl',{
+      $scope: $scope,
+      $rootScope: $rootScope
+      });
     });
 
     it("Should call confirmPopup", function(){
@@ -44,14 +46,66 @@ describe('UserController', function(){
       expect($rootScope.user).toEqual(undefined);
     });
 
-    /*
-    it('should go to main login page', function(){
-      var teste = spyOn($state, 'go').and.callThrough();
-      $scope.logOut();
-      expect(teste).toHaveBeenCalled();
-    })*/
+  });
+
+  describe("logOutSuccess", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+    });
+
+    it("Should exist", function() {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Tem certeza sair?',
+        template: 'Nós iremos sentir sua falta... =('
+      });
+      $scope.logOutSuccess(confirmPopup);
+    });
+  });
+
+  describe("logOutResponse", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.logOutResponse(true);
+    });
+
+    it("Should call state.go", function() {
+      var state = spyOn($state, 'go').and.callThrough();
+      $scope.logOutResponse(true);
+      expect(state).toHaveBeenCalled();
+      expect(state).toHaveBeenCalledWith('index');
+    });
 
   });
+
+  describe("logOutResponseError", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.logOutResponseError();
+    });
+  });
+
+
 
   describe("followedDeputies", function() {
     var $scope, controller
@@ -133,13 +187,19 @@ describe('UserController', function(){
     });
 
     it("Should exist", function() {
+      var deputy = {
+        id: 10
+      }
       $scope.currentUser = {id: 10};
-      $scope.followDeputy();
+      $scope.followDeputy(deputy);
     });
 
     it("Should call ServerFollowDeputy.save", inject(function(ServerFollowDeputy) {
+      var deputy = {
+        id: 10
+      }
       $scope.currentUser = {id: 10};
-      $scope.followDeputy();
+      $scope.followDeputy(deputy);
 
     }))
   });
@@ -201,13 +261,19 @@ describe('UserController', function(){
     });
 
     it("Should exist", function() {
+      var deputy = {
+        id: 10
+      }
       $scope.currentUser = {id: 10};
-      $scope.unfollowDeputy();
+      $scope.unfollowDeputy(deputy);
     });
 
     it("Should call ServerUnfollowDeputy.save", inject(function(ServerUnfollowDeputy) {
+      var deputy = {
+        id: 10
+      }
       $scope.currentUser = {id: 10};
-      $scope.unfollowDeputy();
+      $scope.unfollowDeputy(deputy);
       expect(ServerUnfollowDeputy.save).toHaveBeenCalled();
 
     }))
@@ -598,8 +664,141 @@ describe("levelBarPercentage", function(){
     });
   });
 
+	describe("getUserRank", function() {
+		var $scope, controller;
+
+		beforeEach(function() {
+			$scope = {};
+			controller = $controller("UserCtrl", {
+				$scope: $scope
+			});
+
+			spyOn(RankFactory, 'get');
+		});
+
+		it("Should exist", function() {
+			$scope.getUserRank();
+		});
+
+		it("Should call RankFactory.get", inject(function(RankFactory) {
+			$scope.getUserRank();
+
+			expect(RankFactory.get).toHaveBeenCalled();
+		}));
+	});
+
+	describe("getRank", function() {
+		var $scope, controller;
+		beforeEach(function() {
+			$scope = {};
+			controller = $controller("UserCtrl", {
+				$scope: $scope
+			});
+		});
+
+		it("Should exist", function() {
+			$scope.getRank("dummy");
+		});
+	});
+
+	describe("getRankError", function() {
+		var $scope, controller;
+		beforeEach(function() {
+			$scope = {};
+			controller = $controller("UserCtrl", {
+				$scope: $scope
+			});
+		});
+
+		it("Should exist", function() {
+			$scope.getRankError('dummy');
+		});
+
+		it("Should show alert", function() {
+			spyOn(window, 'alert');
+			$scope.getRankError('dummy');
+			expect(window.alert).toHaveBeenCalledWith("Não foi possível estabelecer conexão com o servidor...");
+		});
+	});
+
+  describe("updateUserServerDataSuccess", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.updateUserServerDataSuccess("dummy");
+    });
+  });
+
+  describe("updateUserServerDataError", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.updateUserServerDataError("dummy");
+    });
+  });
+
+  describe("deleteUser", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.deleteUser(10);
+    });
+  });
+
+  describe("serverUpdateLevelSucess", function() {
+    var $scope, controller, $rootScope;
+    beforeEach(function() {
+      $scope = {};
+        $rootScope = {user: {level: {level_number: 0}, experience_points: 50}};
+      controller = $controller("UserCtrl", {
+        $scope: $scope,
+        $rootScope: $rootScope
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.serverUpdateLevelSucess('dummy');
+    });
+  });
+
+  describe("serverUpdateLevelError", function() {
+    var $scope, controller;
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function() {
+      $scope.serverUpdateLevelError('dummy');
+    });
 
 
+    it("Should show alert", function() {
+      spyOn(window, 'alert');
+      $scope.serverUpdateLevelError('dummy');
+      expect(window.alert).toHaveBeenCalledWith("Não foi possível atualizar level do usuário");
+    });
 
+  });
 
 });
