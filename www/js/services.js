@@ -53,9 +53,12 @@ angular.module('starter.services', ['ngResource'])
   })
 })
 
-.factory('ServerDeputies', function($resource) {
-  return $resource(HOST + '/deputies/all')
-})
+.factory('ServerDeputies', ["$resource", function($resource) {
+  return $resource(
+    HOST + '/deputies/all',
+    {'query': { method: 'GET', isArray: true}}
+  );
+}])
 
 .factory('ServerFindDeputy', function($resource) {
   return $resource(HOST + '/deputies/:id', {
