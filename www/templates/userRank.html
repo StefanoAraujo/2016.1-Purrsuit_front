@@ -1,15 +1,23 @@
-<ion-view view-title="Ranking" ng-controller = "UserCtrl">
-  <ion-content>
-    <div class="list" ng-controller = "getUserRank">
-
-      <a collection-repeat="itemUser in users"
-                    class="item item-avatar item-icon-right">
+<ion-view view-title="Ranking">
+  <ion-content ng-init="getUserPositionRanking()">
+    <div class="card">
+      <div class="item item-avatar" ng-init="getUserRank()">
+        <img src="{{currentUser.level.image_url}}">
+        <h2>{{currentUser.nickname}}</h2>
+        <p>Sua posição no ranking: {{userPositionRanking}}º</p>
+        <p>
+          Pontos de experiência: {{currentUser.experience_points}}
+        </p>
+      </div>
+    </div>
+    
+    <div class="list">
+      <a collection-repeat="itemUser in users" class="item item-avatar item-icon-right">
         <img ng-src="{{itemUser.level.image_url}}">
         <i class="icon ion-ribbon-b" ng-if="itemUser == users[0]"></i>
         <h2>{{itemUser.nickname}}</h2>
         <h4>{{itemUser.experience_points}}</h4>
       </a>
-
     </div>
   </ion-content>
 </ion-view>

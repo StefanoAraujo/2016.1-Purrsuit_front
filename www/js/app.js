@@ -23,7 +23,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html'
-    //controller: 'AppCtrl'
   })
 
   // Listing all quests

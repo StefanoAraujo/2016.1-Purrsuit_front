@@ -12,6 +12,12 @@ angular.module('starter.services', ['ngResource'])
   return $resource(HOST + '/users/ranking')
 })
 
+.factory('UserPositionFactory', function($resource) {
+  return $resource(HOST + '/users/ranking/:id', {
+  id: "@id"
+  })
+})
+
 .factory('SignUp', function($resource) {
   return $resource(HOST + '/users/create')
 })

@@ -1,5 +1,8 @@
 <ion-view cache-view="false" view-title="Perfil">
   <ion-content ng-init="updateLevel()">
+    <div ng-init="getUserPositionRanking()">
+
+    </div>
 		<img class="user-image"ng-src="{{currentUser.level.image_url}}" />
 		<h2 class="user-nickname"> {{currentUser.nickname}} </h2><br>
 		<div class="levelBar">

@@ -1,7 +1,11 @@
 angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
-'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy','ServerUnfollowDeputy','LevelsFactory','ReceiveQuests','RankFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy, ServerUnfollowDeputy, LevelsFactory, ReceiveQuests, RankFactory) {
+'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies',
+'ServerFollowDeputy','ServerUnfollowDeputy','LevelsFactory','ReceiveQuests','RankFactory', 'UserPositionFactory',
+function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
+  LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy, ServerUnfollowDeputy,
+  LevelsFactory, ReceiveQuests, RankFactory, UserPositionFactory) {
 
 
   //Receive Quests
@@ -50,6 +54,7 @@ angular.module('starter')
   $scope.getRank = function(data){
     console.log("SERVICES: Getting Users data from server...")
     $scope.users = data.users;
+    console.log($scope.users);
   }
 
   $scope.getRankError = function(data){
@@ -227,7 +232,6 @@ angular.module('starter')
     $scope.updateLevel();
 
     $scope.updateUserServerData($rootScope.user);
-    // NEED: Fix EditUser function in Rails
   }
 
   $scope.followedDeputies = function () {
@@ -303,5 +307,20 @@ angular.module('starter')
   $scope.serverFollowingError = function (data) {
       alert("Não foi possível estabelecer conexeão com o servidor...");
   }
+  
+  $scope.getUserPositionRanking = function(){
+    var userId = $rootScope.user.id;
+    UserPositionFactory.get({id: userId}, $scope.serverUserPositionSuccess,
+      $scope.serverUserPositionError);
+  }
 
+  $scope.serverUserPositionSuccess = function(data){
+    console.log("USER_POSITION: Getting user position from server...");
+    $scope.userPositionRanking = data.users[0];
+
+  }
+
+  $scope.serverUserPositionError = function(data){
+    console.log("USER_POSITION ERROR: Could not get user position from server!");
+  }
 }])
