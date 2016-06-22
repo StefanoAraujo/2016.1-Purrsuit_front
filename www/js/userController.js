@@ -1,7 +1,8 @@
 angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
-'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy','ServerUnfollowDeputy','LevelsFactory','ReceiveQuests','RankFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy, ServerUnfollowDeputy, LevelsFactory, RankFactory, ReceiveQuests) {
+'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy','ServerUnfollowDeputy','LevelsFactory','ReceiveQuests','RankFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy, ServerUnfollowDeputy, LevelsFactory, ReceiveQuests, RankFactory) {
+
 
   //Receive Quests
   $scope.receiveQuests = function(userId,questsAmount) {
@@ -61,6 +62,9 @@ angular.module('starter')
     LogInFactory.get(data, $scope.signInValid, $scope.signInError)
   }
 
+  var numberofDays = function(){
+
+  }
 
 	$scope.signInValid = function(data) {
 		console.log(data);
