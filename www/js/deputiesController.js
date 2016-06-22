@@ -45,7 +45,7 @@ angular.module('starter')
     $scope.serverSearchDeputies = function(data){
       console.log("SERVICES: Getting Deputies with text data from server...")
 
-      if (data.deputies.length > 0) {
+      if (data.length > 0) {
         $scope.deputies = data;
       } else {
         alert("Não foi encontrado nenhum deputado com esses parâmetros")

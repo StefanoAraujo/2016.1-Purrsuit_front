@@ -5,12 +5,12 @@ angular.module('starter')
 function($scope, $stateParams, ServerQuests, ServerFindQuest) {
 
   $scope.getQuests = function () {
-    ServerQuests.get($scope.serverQuests, $scope.serverQuestsError)
+    ServerQuests.query($scope.serverQuests, $scope.serverQuestsError)
 	}
-	
+
 	$scope.serverQuests = function(data) {
         console.log("SERVICES: Getting Quests data from server...");
-        $scope.quests = data.quests;
+        $scope.quests = data;
 	}
   $scope.serverQuestsError = function(data) {
         alert("Não foi possível estabelecer conexão com o servidor...");
@@ -24,12 +24,12 @@ function($scope, $stateParams, ServerQuests, ServerFindQuest) {
 			id: searchId
 		}, $scope.serverFindQuest, $scope.serverFindQuestError)
 	}
-		
+
 	$scope.serverFindQuest = function(data){
 		console.log("SERVICES: Getting Quest data from server");
-		$scope.quest = data.quest;
+		$scope.quest = data;
   }
-	
+
   $scope.serverFindQuestError = function(data){
     alert("Não foi possível estabelecer conexão com o servidor...");
     console.log("SERVICES: ERROR in getting Quest data from server");

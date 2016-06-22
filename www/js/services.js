@@ -1,5 +1,5 @@
 "use strict";
-const HOST = "http://localhost:3000";
+const HOST = "https://purrsuit.herokuapp.com/";
 
 angular.module('starter.services', ['ngResource'])
 
