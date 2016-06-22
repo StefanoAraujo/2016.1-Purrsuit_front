@@ -66,8 +66,12 @@ angular.module('starter.services', ['ngResource'])
   })
 })
 
-.factory('ServerQuests', function($resource) {
-  return $resource(HOST + '/quests/all.json')
+.factory('ReceiveQuests', function($resource) {
+  return $resource(HOST + '/users/receivequests')
+})
+
+.factory('ReceivedQuests', function($resource) {
+  return $resource(HOST + '/quests/doing')
 })
 
 .factory('ServerFindQuest', function($resource) {

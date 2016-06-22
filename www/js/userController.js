@@ -1,10 +1,23 @@
 angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
-'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy',
-'ServerUnfollowDeputy','LevelsFactory', 'RankFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,
-LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy,
-ServerUnfollowDeputy, LevelsFactory, RankFactory) {
+'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies','ServerFollowDeputy','ServerUnfollowDeputy','LevelsFactory','ReceiveQuests','RankFactory',function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser, LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy, ServerUnfollowDeputy, LevelsFactory, ReceiveQuests, RankFactory) {
+
+
+  //Receive Quests
+  $scope.receiveQuests = function(userId,questsAmount) {
+    data = {userId,questsAmount};
+    ReceiveQuests.get(data, $scope.receiveSuccess, $scope.receiveError)
+  }
+
+  $scope.receiveSuccess = function(data){
+    console.log("Receiving quests from server...");
+  }
+
+  $scope.receiveError = function(error){
+    alert("Não foi possível estabelecer conexão com o servidor...");
+  }
+
   //Sign up
   $scope.signUp = function(user){
     console.log(user);
@@ -16,8 +29,10 @@ ServerUnfollowDeputy, LevelsFactory, RankFactory) {
         title: 'Sucesso',
         template: 'Conta criada com êxito!'
       });
-      console.log(user)
-      $state.go('login')
+      console.log(user);
+      var userId = user.user.id;
+      $scope.receiveQuests(userId,3);
+      $state.go('login');
 
 	}
 
@@ -47,6 +62,9 @@ ServerUnfollowDeputy, LevelsFactory, RankFactory) {
     LogInFactory.get(data, $scope.signInValid, $scope.signInError)
   }
 
+  var numberofDays = function(){
+
+  }
 
 	$scope.signInValid = function(data) {
 		console.log(data);
