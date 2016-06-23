@@ -3,7 +3,7 @@
 const LOCAL = 'http://localhost:3000/';
 const DEV = 'https://purrsuit-staging.herokuapp.com/';
 const PRODUCTION = "https://purrsuit-production.herokuapp.com/";
-const HOST = DEV;
+const HOST = LOCAL;
 
 angular.module('starter.services', ['ngResource'])
 

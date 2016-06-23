@@ -1,7 +1,7 @@
 <ion-view cache-view="false">
 	<div ng-controller="UserCtrl">
 		<div class="deputyPerfil"></div>
-		<img class="deputyImage" src="{{deputy.image_path}}" />
+		<img class="deputyImage" src="{{deputy.image_url}}" />
 		<button class="button button-balanced follow-button icon ion-person-add" ng-click=followDeputy(deputy) ng-hide="isFollowed">
 			Seguir
 		</button>
