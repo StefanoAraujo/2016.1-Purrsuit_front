@@ -3,7 +3,7 @@
     <div class="list" ng-controller = "followedDeputies">
       <a collection-repeat="itemDeputy in followed" href="#/app/deputy/{{itemDeputy.id}}"
                     class="item item-avatar" ng-click=following(itemDeputy.id)>
-        <img ng-src="{{itemDeputy.image_path}}">
+        <img ng-src="{{itemDeputy.image_url}}">
         <h2>{{itemDeputy.deputy_name}}</h2>
       </a>
 

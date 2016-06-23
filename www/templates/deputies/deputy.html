@@ -1,7 +1,7 @@
 <ion-view cache-view="false">
 	<div ng-controller="UserCtrl">
 		<div class="deputyPerfil"></div>
-		<img class="deputyImage" src="{{deputy.image_path}}" />
+		<img class="deputyImage" src="{{deputy.image_url}}" />
 		<button class="button button-balanced follow-button icon ion-person-add" ng-click=followDeputy(deputy) ng-hide="isFollowed">
 			Seguir
 		</button>
@@ -76,10 +76,106 @@
 			<ion-slide ion-slide-tab-label="Gastos">
 				<div class="card">
 					<div class="item item-divider">
-						Gasto
+						Gastos Totais
 					</div>
 					<div class="item item-text-wrap">
-						R$ {{deputy.total_cost}}
+						R$ {{deputy.total_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Manutenção de Escritório
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_office_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+					Consultorias, Pesquisas e Trabalhos Técnicos
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_contract_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Combustíveis e Lubrificantes
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_gas_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Divulgação da Atividade Parlamentar
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_advertising_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Serviço de Segurança
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_security_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Passagens Aéreas
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_air_ticket_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Telefonia
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_phone_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Serviços Postais
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_postal_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Alimentação
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_alimentation_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Hospedagem
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_accommodation_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Locação ou Fretamento
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_vehicle_tenancy_cost.toFixed(2)}}
+					</div>
+				</div>
+				<div class="card">
+					<div class="item item-divider">
+						Participação em Cursos
+					</div>
+					<div class="item item-text-wrap">
+						R$ {{deputy.total_participation_cost.toFixed(2)}}
 					</div>
 				</div>
 			</ion-slide>

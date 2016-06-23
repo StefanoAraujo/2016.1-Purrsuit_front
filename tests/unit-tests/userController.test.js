@@ -7,7 +7,7 @@ describe('UserController', function(){
   beforeEach(module('starter'));
   beforeEach(inject(function(_$controller_,_$rootScope_, _$state_, _$ionicPopup_, _SignUp_,
      _LogInFactory_, _EditUser_, _LogOutFactory_, _DeleteUser_, _ServerFollowedDeputies_,
-      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_, _RankFactory_) {
+      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_, _RankFactory_, _UserPositionFactory_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     $state = _$state_;
@@ -22,6 +22,7 @@ describe('UserController', function(){
     ServerUnfollowDeputy = _ServerUnfollowDeputy_;
     LevelsFactory = _LevelsFactory_;
 		RankFactory = _RankFactory_;
+    UserPositionFactory = _UserPositionFactory_;
   }));
 
   describe('logOut', function(){
@@ -108,26 +109,28 @@ describe('UserController', function(){
 
 
   describe("followedDeputies", function() {
-    var $scope, controller
+    var $scope, controller, $rootScope
     beforeEach(function() {
       $scope = {};
+      $rootScope = {};
       controller = $controller("UserCtrl", {
         $scope: $scope,
+        $rootScope: $rootScope
       });
 
-      spyOn(ServerFollowedDeputies, 'get');
+      spyOn(ServerFollowedDeputies, 'query');
     });
 
     it("Should exist", function() {
-      $scope.currentUser = {id: 10};
+      $rootScope.currentUser = {id: 10};
       $scope.followedDeputies();
     });
 
-    it("Should call ServerFollowedDeputies.get", inject(function(ServerFollowedDeputies) {
-      $scope.currentUser = {id: 10};
+    it("Should call ServerFollowedDeputies.query", inject(function(ServerFollowedDeputies) {
+      $rootScope.currentUser = {id: 10};
       $scope.followedDeputies();
 
-      expect(ServerFollowedDeputies.get).toHaveBeenCalled();
+      expect(ServerFollowedDeputies.query).toHaveBeenCalled();
     }))
   });
 
@@ -145,9 +148,8 @@ describe('UserController', function(){
     });
 
     it("Should call ServerFollowedDeputies.get", inject(function(ServerFollowedDeputies) {
-      var dummy = {
-        deputies: "dummy"
-      }
+      var dummy = "dummy"
+
       $scope.serverFollowedDeputies(dummy);
 
       expect($scope.followed).toBe("dummy");
@@ -175,12 +177,14 @@ describe('UserController', function(){
   });
 
   describe("followDeputy", function() {
-    var $scope, controller;
+    var $scope, controller, $rootScope
     beforeEach(function() {
       $scope = {};
+      $rootScope = {};
 
       controller = $controller("UserCtrl", {
         $scope: $scope,
+        $rootScope: $rootScope
       });
 
       spyOn(ServerFollowDeputy, 'save');
@@ -190,7 +194,7 @@ describe('UserController', function(){
       var deputy = {
         id: 10
       }
-      $scope.currentUser = {id: 10};
+      $rootScope.currentUser = {id: 10};
       $scope.followDeputy(deputy);
     });
 
@@ -198,7 +202,7 @@ describe('UserController', function(){
       var deputy = {
         id: 10
       }
-      $scope.currentUser = {id: 10};
+      $rootScope.currentUser = {id: 10};
       $scope.followDeputy(deputy);
 
     }))
@@ -208,7 +212,7 @@ describe('UserController', function(){
     var $scope, controller, $rootScope, deputyId;
     beforeEach(function() {
       $scope = {};
-      $rootScope = {isFollowed: true};
+      $rootScope = {};
       deputyId = 1;
       controller = $controller("UserCtrl", {
         $scope: $scope,
@@ -221,9 +225,8 @@ describe('UserController', function(){
     });
 
     it("Should call ServerFollowDeputy.save", inject(function(ServerFollowDeputy) {
-      $scope.currentUser = {id: 1};
+      $rootScope.currentUser = {id: 1};
       $scope.followDeputy(deputyId);
-      expect($rootScope.isFollowed).toEqual(true);
     }))
 
   });
@@ -249,12 +252,14 @@ describe('UserController', function(){
   });
 
   describe("unfollowDeputy", function() {
-    var $scope, controller;
+    var $scope, controller, $rootScope;
     beforeEach(function() {
       $scope = {};
+      $rootScope = {};
 
       controller = $controller("UserCtrl", {
         $scope: $scope,
+        $rootScope: $rootScope
       });
 
       spyOn(ServerUnfollowDeputy, 'save');
@@ -264,7 +269,7 @@ describe('UserController', function(){
       var deputy = {
         id: 10
       }
-      $scope.currentUser = {id: 10};
+      $rootScope.currentUser = {id: 10};
       $scope.unfollowDeputy(deputy);
     });
 
@@ -272,7 +277,7 @@ describe('UserController', function(){
       var deputy = {
         id: 10
       }
-      $scope.currentUser = {id: 10};
+      $rootScope.currentUser = {id: 10};
       $scope.unfollowDeputy(deputy);
       expect(ServerUnfollowDeputy.save).toHaveBeenCalled();
 
@@ -296,7 +301,7 @@ describe('UserController', function(){
 
     it("Should call ServerUnfollowDeputy.save", inject(function(ServerUnfollowDeputy) {
       data = 'dummy';
-      $scope.currentUser = {id: 1};
+      $rootScope.currentUser = {id: 1};
       $scope.unfollowDeputy(data);
       expect($rootScope.isFollowed).toEqual(false);
     }))
@@ -325,26 +330,28 @@ describe('UserController', function(){
 
 
   describe("following", function() {
-    var $scope, controller;
+    var $scope, controller, $rootScope;
     beforeEach(function() {
       $scope = {};
+      $rootScope = {};
 
       controller = $controller("UserCtrl", {
         $scope: $scope,
+        $rootScope: $rootScope
       });
 
-      spyOn(ServerFollowedDeputies, 'get');
+      spyOn(ServerFollowedDeputies, 'query');
     });
 
     it("Should exist", function() {
-      $scope.currentUser = {id: 10};
+      $rootScope.currentUser = {id: 10};
       $scope.following();
     });
 
     it("Should call ServerFollowedDeputies.get", inject(function(ServerFollowedDeputies) {
-      $scope.currentUser = {id: 10};
+      $rootScope.currentUser = {id: 10};
       $scope.following();
-      expect(ServerFollowedDeputies.get).toHaveBeenCalled();
+      expect(ServerFollowedDeputies.query).toHaveBeenCalled();
 
     }))
   });
@@ -513,11 +520,11 @@ describe('UserController', function(){
       });
     });
 
-describe("levelBarPercentage", function(){
+describe("updateLevelBar", function(){
   var $scope, $rootScope, controller;
     beforeEach(function() {
       $scope = {};
-      $rootScope = {user: {level: {xp_max: 100, xp_min:0}, experience_points: 50}};
+      $rootScope = {currentUser: {level: {xp_max: 100, xp_min:0}, experience_points: 50}};
       controller = $controller("UserCtrl", {
         $scope: $scope,
         $rootScope: $rootScope
@@ -547,16 +554,16 @@ describe("levelBarPercentage", function(){
         $rootScope: $rootScope
       });
 
-      spyOn(LevelsFactory, 'get');
+      spyOn(LevelsFactory, 'query');
     });
 
     it("Should exist", function(){
       $scope.updateLevel();
     });
 
-    it("Should call LevelsFactory.get", inject(function(LevelsFactory){
+    it("Should call LevelsFactory.query", inject(function(LevelsFactory){
       $scope.updateLevel();
-      expect(LevelsFactory.get).toHaveBeenCalled();
+      expect(LevelsFactory.query).toHaveBeenCalled();
     }));
 
     /*
@@ -673,17 +680,17 @@ describe("levelBarPercentage", function(){
 				$scope: $scope
 			});
 
-			spyOn(RankFactory, 'get');
+			spyOn(RankFactory, 'query');
 		});
 
 		it("Should exist", function() {
 			$scope.getUserRank();
 		});
 
-		it("Should call RankFactory.get", inject(function(RankFactory) {
+		it("Should call RankFactory.query", inject(function(RankFactory) {
 			$scope.getUserRank();
 
-			expect(RankFactory.get).toHaveBeenCalled();
+			expect(RankFactory.query).toHaveBeenCalled();
 		}));
 	});
 
@@ -798,7 +805,66 @@ describe("levelBarPercentage", function(){
       $scope.serverUpdateLevelError('dummy');
       expect(window.alert).toHaveBeenCalledWith("Não foi possível atualizar level do usuário");
     });
+  });
 
+  describe("getUserPositionRanking", function(){
+    var $scope, $rootScope, controller;
+
+    beforeEach(function() {
+        $scope = {};
+        $rootScope = {user: {id: 0}};
+        controller = $controller("UserCtrl", {
+        $scope: $scope,
+        $rootScope: $rootScope
+      });
+
+      spyOn(UserPositionFactory, 'query');
+    });
+
+    it("Should exist", function(){
+      $scope.getUserPositionRanking();
+    });
+
+    it("Should call UserPositionFactory.query", inject(function(UserPositionFactory){
+      $scope.getUserPositionRanking();
+      expect(UserPositionFactory.query).toHaveBeenCalled();
+    }));
+  });
+
+  describe("serverUserPositionSuccess", function(){
+    var $scope, controller, testObject = [];
+
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+      testObject = ["dummy0", "dummy1", "dummy2"];
+    });
+
+    it("Should exist", function(){
+        $scope.serverUserPositionSuccess(testObject);
+    });
+
+    it("Should have the same value on $scope.userPositionRanking", function(){
+      $scope.serverUserPositionSuccess(testObject);
+      expect($scope.userPositionRanking).toEqual("dummy0");
+    });
+  });
+
+  describe("serverUserPositionError", function(){
+    var $scope, controller, testObject = [];
+
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function(){
+        $scope.serverUserPositionError("dummy");
+    });
   });
 
 });

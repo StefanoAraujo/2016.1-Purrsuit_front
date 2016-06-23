@@ -26,17 +26,17 @@ describe("DeputiesCtrl", function() {
         $scope: $scope
       });
 
-      spyOn(ServerDeputies, 'get');
+      spyOn(ServerDeputies, 'query');
     })
 
     it("Should exist", function() {
       $scope.getDeputies();
     });
 
-    it("Should call ServerDeputies.get", inject(function(ServerDeputies) {
+    it("Should call ServerDeputies.query", inject(function(ServerDeputies) {
       $scope.getDeputies();
 
-      expect(ServerDeputies.get).toHaveBeenCalled();
+      expect(ServerDeputies.query).toHaveBeenCalled();
     }))
   });
 
@@ -54,11 +54,8 @@ describe("DeputiesCtrl", function() {
     });
 
     it("Should call ServerDeputies.get", inject(function(ServerDeputies) {
-      var dummy = {
-        deputies: "dummy"
-      }
+      var dummy = "dummy"
       $scope.serverDeputies(dummy);
-
       expect($scope.deputies).toBe("dummy");
     }))
   })
@@ -118,9 +115,7 @@ describe("DeputiesCtrl", function() {
     });
 
     it("Should call ServerFindDeputy.get", inject(function(ServerFindDeputy) {
-      var deputy_details = {
-        deputy_details: "dummy"
-      }
+      var deputy_details = "dummy"
       $scope.serverFindDeputy(deputy_details);
 
       expect($scope.deputy).toBe("dummy");
@@ -156,17 +151,17 @@ describe("DeputiesCtrl", function() {
       controller = $controller("DeputiesCtrl", {
         $scope: $scope
       });
-      spyOn(ServerSearchDeputies, 'get');
+      spyOn(ServerSearchDeputies, 'query');
     });
 
     it("Should exist", function() {
       $scope.searchDeputies('dummy');
     });
 
-    it("Should call serverSearchDeputies.get", inject(function(ServerSearchDeputies) {
+    it("Should call serverSearchDeputies.query", inject(function(ServerSearchDeputies) {
       var data = "dummy"
       $scope.searchDeputies();
-      expect(ServerSearchDeputies.get).toHaveBeenCalled();
+      expect(ServerSearchDeputies.query).toHaveBeenCalled();
     }));
   });
 

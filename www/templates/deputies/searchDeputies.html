@@ -11,7 +11,7 @@
 	  <div class="list">
 	    <a collection-repeat="itemDeputy in deputies" href="#/app/deputy/{{itemDeputy.id}}"
 	                  class="item item-avatar" ng-click=following(itemDeputy.id)>
-	      <img ng-src="{{itemDeputy.image_path}}">
+	      <img ng-src="{{itemDeputy.image_url}}">
 	      <h2>{{itemDeputy.deputy_name}}</h2>
         <h4>{{itemDeputy.party.name}}</h4>
 				<h4>{{itemDeputy.uf.name}}</h4>
