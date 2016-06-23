@@ -4,13 +4,14 @@ angular.module('starter')
 .controller('QuestsCtrl',['$scope','$rootScope','$stateParams','ReceivedQuests','ServerFindQuest',
 function($scope, $rootScope, $stateParams, ReceivedQuests, ServerFindQuest) {
 
+
   $scope.getQuests = function (userId) {
-    ReceivedQuests.get({userId}, $scope.serverQuests, $scope.serverQuestsError)
+    ServerQuests.query({userId},$scope.serverQuests, $scope.serverQuestsError)
 	}
 
 	$scope.serverQuests = function(data) {
-    console.log("SERVICES: Getting Quests data from server...");
-    $rootScope.quests = data.quests;
+        console.log("SERVICES: Getting Quests data from server...");
+        $rootScope.quests = data;
 	}
 
   $scope.serverQuestsError = function(data) {
@@ -28,7 +29,7 @@ function($scope, $rootScope, $stateParams, ReceivedQuests, ServerFindQuest) {
 
 	$scope.serverFindQuest = function(data){
 		console.log("SERVICES: Getting Quest data from server");
-		$scope.quest = data.quest;
+		$scope.quest = data;
   }
 
   $scope.serverFindQuestError = function(data){

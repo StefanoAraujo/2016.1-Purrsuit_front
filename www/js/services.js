@@ -1,5 +1,5 @@
 "use strict";
-const HOST = "http://localhost:3000";
+const HOST = "https://purrsuit.herokuapp.com/";
 
 angular.module('starter.services', ['ngResource'])
 
@@ -59,9 +59,12 @@ angular.module('starter.services', ['ngResource'])
   })
 })
 
-.factory('ServerDeputies', function($resource) {
-  return $resource(HOST + '/deputies/all')
-})
+.factory('ServerDeputies', ["$resource", function($resource) {
+  return $resource(
+    HOST + '/deputies/all',
+    {'query': { method: 'GET', isArray: true}}
+  );
+}])
 
 .factory('ServerFindDeputy', function($resource) {
   return $resource(HOST + '/deputies/:id', {

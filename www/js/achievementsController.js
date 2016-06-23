@@ -4,12 +4,12 @@ angular.module('starter')
 function($scope, $stateParams, ServerAchievements, ServerFindAchv){
 
   $scope.getAchievements =  function () {
-    ServerAchievements.get($scope.serverAchievements, $scope.serverAchievementsError)
+    ServerAchievements.query($scope.serverAchievements, $scope.serverAchievementsError)
 	}
-		
+
 	$scope.serverAchievements = function(data){
       console.log("SERVICES: Getting achievements data from server...");
-      $scope.achievements = data.achievements;
+      $scope.achievements = data;
 	}
 
   $scope.serverAchievementsError =  function(data){
@@ -27,7 +27,7 @@ function($scope, $stateParams, ServerAchievements, ServerFindAchv){
 
   $scope.serverFindAchv = function(data) {
     console.log("SERVICES: Getting Achievement data from server...");
-    $scope.achievement = data.achievement;
+    $scope.achievement = data;
   }
 
   $scope.serverFindAchvError = function(data){

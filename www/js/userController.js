@@ -48,13 +48,12 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
 	}
   //Ranking
   $scope.getUserRank = function(){
-    RankFactory.get($scope.getRank, $scope.getRankError)
+    RankFactory.query($scope.getRank, $scope.getRankError)
   }
 
   $scope.getRank = function(data){
     console.log("SERVICES: Getting Users data from server...")
-    $scope.users = data.users;
-    console.log($scope.users);
+    $scope.users = data;
   }
 
   $scope.getRankError = function(data){
@@ -73,7 +72,7 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
 
 	$scope.signInValid = function(data) {
 		console.log(data);
-		updateCurrentUser(data.user);
+		updateCurrentUser(data);
 		$rootScope.logged = true;
 		console.log($scope.logged);
 		$state.go('app.browseDeputies')
@@ -137,6 +136,7 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
 
   updateCurrentUser = function(data){
     $rootScope.user = data;
+    $rootScope.currentUser = $rootScope.user;
   }
 
   //Delete
@@ -166,15 +166,13 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
       })
   }
 
-  $scope.currentUser = $rootScope.user;
-
   $scope.updateLevelBar = function()
   {
     var percentage = 0;
-    var userExp = $rootScope.user.experience_points;
+    var userExp = $rootScope.currentUser.experience_points;
 
-    var minXp = $rootScope.user.level.xp_min;
-    var maxXp = $rootScope.user.level.xp_max;
+    var minXp = $rootScope.currentUser.level.xp_min;
+    var maxXp = $rootScope.currentUser.level.xp_max;
 
     var diffXp = maxXp - minXp;
     var diffUserXp = userExp - minXp;
@@ -200,13 +198,13 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   }
 
   $scope.updateLevel = function(){
-    LevelsFactory.get($scope.serverUpdateLevelSucess, $scope.serverUpdateLevelError);
+    LevelsFactory.query($scope.serverUpdateLevelSucess, $scope.serverUpdateLevelError);
   }
 
   $scope.serverUpdateLevelSucess = function(data){
     console.log("Getting Levels data from SERVER...");
     var userExp = $rootScope.user.experience_points;
-    var levelsData = data.levels;
+    var levelsData = data;
 
     for(var counter in levelsData)
     {
@@ -235,14 +233,14 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   }
 
   $scope.followedDeputies = function () {
-      console.log($scope.currentUser);
-      var userId = $scope.currentUser.id;
-      ServerFollowedDeputies.get({id: userId}, $scope.serverFollowedDeputies, $scope.serverFollowedDeputiesError)
+      console.log($rootScope.currentUser);
+      var userId = $rootScope.currentUser.id;
+      ServerFollowedDeputies.query({id: userId}, $scope.serverFollowedDeputies, $scope.serverFollowedDeputiesError)
   }
 
   $scope.serverFollowedDeputies = function(data) {
     console.log("SERVICES: Getting Followed Deputies from server");
-    $scope.followed = data.deputies;
+    $scope.followed = data;
   }
 
   $scope.serverFollowedDeputiesError = function(data) {
@@ -250,7 +248,7 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   }
 
   $scope.followDeputy = function(deputy) {
-    var userId = $scope.currentUser.id;
+    var userId = $rootScope.currentUser.id;
     var deputyId = deputy.id;
     var data = {deputyId, userId, id: userId};
     ServerFollowDeputy.save(data, $scope.serverFollowDeputy, $scope.serverFollowDeputyError)
@@ -268,7 +266,7 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   }
 
   $scope.unfollowDeputy = function(deputy) {
-    var userId = $scope.currentUser.id;
+    var userId = $rootScope.currentUser.id;
     var deputyId = deputy.id;
     var data = {deputyId, userId, id: userId};
     ServerUnfollowDeputy.save(data, $scope.serverUnfollowDeputy, $scope.serverUnfollowDeputyError)
@@ -287,14 +285,14 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   }
 
   $scope.following = function(deputyId) {
-    var userId = $scope.currentUser.id;
+    var userId = $rootScope.currentUser.id;
     $rootScope.deputyCheck = deputyId;
-    ServerFollowedDeputies.get({id:userId},$scope.serverFollowing, $scope.serverFollowingError)
+    ServerFollowedDeputies.query({id:userId},$scope.serverFollowing, $scope.serverFollowingError)
   }
 
   $scope.serverFollowing = function(data) {
     console.log("SERVICES: Getting Followed Deputies from server");
-    $scope.followed = data.deputies;
+    $scope.followed = data;
     $rootScope.isFollowed = false;
     for (var i in $scope.followed) {
       if($scope.followed[i].id == $rootScope.deputyCheck) {
@@ -307,7 +305,7 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   $scope.serverFollowingError = function (data) {
       alert("Não foi possível estabelecer conexeão com o servidor...");
   }
-  
+
   $scope.getUserPositionRanking = function(){
     var userId = $rootScope.user.id;
     UserPositionFactory.get({id: userId}, $scope.serverUserPositionSuccess,

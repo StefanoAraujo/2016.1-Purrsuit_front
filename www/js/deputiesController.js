@@ -6,12 +6,12 @@ angular.module('starter')
     ServerSearchDeputies, ServerUf, ServerParty) {
 
     $scope.getDeputies = function() {
-      ServerDeputies.get($scope.serverDeputies, $scope.serverDeputiesError)
+      ServerDeputies.query($scope.serverDeputies, $scope.serverDeputiesError)
     }
 
     $scope.serverDeputies = function(data) {
       console.log("SERVICES: Getting Deputies data from server...")
-      $scope.deputies = data.deputies;
+      $scope.deputies = data;
     }
 
     $scope.serverDeputiesError = function(data) {
@@ -28,7 +28,7 @@ angular.module('starter')
 
     $scope.serverFindDeputy = function(data) {
       console.log("SERVICES: Getting Deputy data from server...");
-      $scope.deputy = data.deputy_details;
+      $scope.deputy = data;
     }
     $scope.serverFindDeputyError = function(data) {
       alert("Não foi possível estabelecer conexão com o servidor...");
@@ -37,7 +37,7 @@ angular.module('starter')
 
     $scope.searchDeputies = function(inputText) {
         $scope.deputies = [];
-        ServerSearchDeputies.get({
+        ServerSearchDeputies.query({
             toSearch: inputText
           }, $scope.serverSearchDeputies, $scope.serverSearchDeputiesError)
     }
@@ -45,8 +45,8 @@ angular.module('starter')
     $scope.serverSearchDeputies = function(data){
       console.log("SERVICES: Getting Deputies with text data from server...")
 
-      if (data.deputies.length > 0) {
-        $scope.deputies = data.deputies;
+      if (data.length > 0) {
+        $scope.deputies = data;
       } else {
         alert("Não foi encontrado nenhum deputado com esses parâmetros")
         console.log("Services: Search returned no Deputy")
