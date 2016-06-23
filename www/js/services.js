@@ -1,5 +1,5 @@
 "use strict";
-const HOST = "https://purrsuit.herokuapp.com/";
+const HOST = "https://purrsuit-staging.herokuapp.com/";
 
 angular.module('starter.services', ['ngResource'])
 
