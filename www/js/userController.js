@@ -33,8 +33,8 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
         title: 'Sucesso',
         template: 'Conta criada com êxito!'
       });
-      console.log(user);
-      var userId = user.user.id;
+
+      var userId = user.id;
       $scope.receiveQuests(userId,3);
       $state.go('login');
 
@@ -71,10 +71,9 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   }
 
 	$scope.signInValid = function(data) {
-		console.log(data);
 		updateCurrentUser(data);
 		$rootScope.logged = true;
-		console.log($scope.logged);
+		console.log("USER LOGGED: " + $scope.logged);
 		$state.go('app.browseDeputies')
 	}
 
@@ -308,13 +307,13 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
 
   $scope.getUserPositionRanking = function(){
     var userId = $rootScope.user.id;
-    UserPositionFactory.get({id: userId}, $scope.serverUserPositionSuccess,
+    UserPositionFactory.query({id: userId}, $scope.serverUserPositionSuccess,
       $scope.serverUserPositionError);
   }
 
   $scope.serverUserPositionSuccess = function(data){
     console.log("USER_POSITION: Getting user position from server...");
-    $scope.userPositionRanking = data.users[0];
+    $scope.userPositionRanking = data[0];
 
   }
 

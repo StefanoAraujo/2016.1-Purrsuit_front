@@ -103,7 +103,8 @@
 }
 
 .page{
-	background-color: #607D8B;
+
+	background-image: url("../img/Background.png");
 }
 
 .signupPage{
@@ -136,17 +137,17 @@
 .QuestTitle{
 	color: #607D8B;
 }
+
 .sideMenu{
-	background-color: #CFD8DC !important;
-	color:  #212121;
+	background-image: url("../img/Sidemenu-background.jpg");
 }
 
 .purrSuitImage{
-	width: 250px;
-	height: 250px;
+	width: 75%;
+	height:auto;
 	margin: 0 auto;
 	display: table;
-	margin-top: -20px;
+	margin-top: 50px;
 }
 
 .levelBar {
