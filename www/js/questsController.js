@@ -6,7 +6,7 @@ function($scope, $rootScope, $stateParams, ReceivedQuests, ServerFindQuest) {
 
 
   $scope.getQuests = function (userId) {
-    ServerQuests.query({userId},$scope.serverQuests, $scope.serverQuestsError)
+    ReceivedQuests.query({userId},$scope.serverQuests, $scope.serverQuestsError)
 	}
 
 	$scope.serverQuests = function(data) {

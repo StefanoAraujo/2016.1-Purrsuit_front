@@ -2,10 +2,10 @@ angular.module('starter')
 
 .controller('UserCtrl', ['$scope','$rootScope','$state','$ionicPopup','SignUp',
 'LogInFactory','EditUser','LogOutFactory','DeleteUser','ServerFollowedDeputies',
-'ServerFollowDeputy','ServerUnfollowDeputy','LevelsFactory','ReceiveQuests','RankFactory', 'UserPositionFactory',
+'ServerFollowDeputy','ServerUnfollowDeputy','LevelsFactory','ReceiveQuests','RankFactory', 'UserPositionFactory','ReceivedQuests',
 function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   LogOutFactory, DeleteUser, ServerFollowedDeputies, ServerFollowDeputy, ServerUnfollowDeputy,
-  LevelsFactory, ReceiveQuests, RankFactory, UserPositionFactory) {
+  LevelsFactory, ReceiveQuests, RankFactory, UserPositionFactory, ReceivedQuests) {
 
 
   //Receive Quests
@@ -20,6 +20,45 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
 
   $scope.receiveError = function(error){
     alert("Não foi possível estabelecer conexão com o servidor...");
+  }
+
+  $scope.verifyQuests = function(){
+    var userId = $rootScope.user.id;
+    ReceivedQuests.query({userId},function(userQuests){
+      console.log(userQuests.length);
+      if(userQuests.length < 3){
+        var questsToReceive = 3 - userQuests.length;
+        var last_acess = moment($rootScope.user.last_acess);
+        var daysDiff;
+        if (last_acess != null){
+          daysDiff = moment().diff(last_acess,'days');
+          if (daysDiff > questsToReceive){
+            var daysDiff = questsToReceive;
+          }
+          if (daysDiff > 0 && daysDiff <= 3){
+            $scope.receiveQuests($rootScope.user.id, daysDiff);
+          }
+        }
+      }
+    })
+  }
+
+  $scope.updateLastAcess = function(){
+    $rootScope.user.last_acess = moment();
+    var id = $rootScope.user.id;
+    var user = $rootScope.user;
+    console.log(id);
+    var data = {id,user};
+    EditUser.save(data, $scope.updateLastAcessSucess,
+        $scope.updateLastAcessError);
+  }
+
+  $scope.updateLastAcessSucess = function(){
+    console.log("UPDATE USER DATA: Last Acess uploaded!");
+  }
+
+  $scope.updateLastAcessError = function(){
+    console.log("UPDATE USER DATA: Could not upload Last Acess!");
   }
 
   //Sign up
@@ -66,14 +105,11 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
     LogInFactory.get(data, $scope.signInValid, $scope.signInError)
   }
 
-  var numberofDays = function(){
-
-  }
-
 	$scope.signInValid = function(data) {
 		updateCurrentUser(data);
 		$rootScope.logged = true;
 		console.log("USER LOGGED: " + $scope.logged);
+    $scope.verifyQuests();
 		$state.go('app.browseDeputies')
 	}
 
@@ -85,6 +121,32 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
 		});
 	}
 
+  //Edit
+  $scope.editUser = function(data){
+    EditUser.save(data, $scope.editUserValid, $scope.editUserError)
+  }
+
+  $scope.editUserValid = function(data){
+    $ionicPopup.alert({
+      title: 'Sucesso',
+      template: 'Dados alterados com êxito!'
+    });
+    console.log(data);
+    updateCurrentUser(data);
+    $state.go('app.userprofile')
+  }
+
+  $scope.editUserError = function(error) {
+    $ionicPopup.alert({
+      title: 'Erro',
+      template: 'Verifique se os dados estão corretos ou se o email ja foi cadastrado'
+    })
+  }
+
+  updateCurrentUser = function(data){
+    $rootScope.user = data;
+    $rootScope.currentUser = $rootScope.user;
+  }
 
   //Log out
   $scope.logOut = function(){
@@ -102,6 +164,7 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
    $scope.logOutResponse = function (res) {
      if(res == true) {
        console.log("LOGOUT: Cleaning user session data...");
+       $scope.updateLastAcess();
        $rootScope.user = {};
        $rootScope.logged = false;
        $state.go('index');
@@ -110,33 +173,6 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
    $scope.logOutResponseError = function () {
 
    }
-
-
-  //Edit
-  $scope.editUser = function({id,user}){
-    EditUser.save({id: id, user}, $scope.editUserValid, $scope.editUserError)
-	}
-
-	$scope.editUserValid = function({id,user}){
-		$ionicPopup.alert({
-			title: 'Sucesso',
-			template: 'Dados alterados com êxito!'
-		});
-		updateCurrentUser(user);
-		$state.go('app.userprofile')
-	}
-
-	$scope.editUserError = function(error) {
-		$ionicPopup.alert({
-			title: 'Erro',
-			template: 'Verifique se os dados estão corretos ou se o email ja foi cadastrado'
-		})
-	}
-
-  updateCurrentUser = function(data){
-    $rootScope.user = data;
-    $rootScope.currentUser = $rootScope.user;
-  }
 
   //Delete
   $scope.deleteUser = function(id){
