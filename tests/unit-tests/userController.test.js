@@ -7,7 +7,7 @@ describe('UserController', function(){
   beforeEach(module('starter'));
   beforeEach(inject(function(_$controller_,_$rootScope_, _$state_, _$ionicPopup_, _SignUp_,
      _LogInFactory_, _EditUser_, _LogOutFactory_, _DeleteUser_, _ServerFollowedDeputies_,
-      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_, _RankFactory_) {
+      _ServerFollowDeputy_, _ServerUnfollowDeputy_, _LevelsFactory_, _RankFactory_, _UserPositionFactory_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     $state = _$state_;
@@ -22,6 +22,7 @@ describe('UserController', function(){
     ServerUnfollowDeputy = _ServerUnfollowDeputy_;
     LevelsFactory = _LevelsFactory_;
 		RankFactory = _RankFactory_;
+    UserPositionFactory = _UserPositionFactory_;
   }));
 
   describe('logOut', function(){
@@ -804,7 +805,66 @@ describe("updateLevelBar", function(){
       $scope.serverUpdateLevelError('dummy');
       expect(window.alert).toHaveBeenCalledWith("Não foi possível atualizar level do usuário");
     });
+  });
 
+  describe("getUserPositionRanking", function(){
+    var $scope, $rootScope, controller;
+
+    beforeEach(function() {
+        $scope = {};
+        $rootScope = {user: {id: 0}};
+        controller = $controller("UserCtrl", {
+        $scope: $scope,
+        $rootScope: $rootScope
+      });
+
+      spyOn(UserPositionFactory, 'query');
+    });
+
+    it("Should exist", function(){
+      $scope.getUserPositionRanking();
+    });
+
+    it("Should call UserPositionFactory.query", inject(function(UserPositionFactory){
+      $scope.getUserPositionRanking();
+      expect(UserPositionFactory.query).toHaveBeenCalled();
+    }));
+  });
+
+  describe("serverUserPositionSuccess", function(){
+    var $scope, controller, testObject = [];
+
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+      testObject = ["dummy0", "dummy1", "dummy2"];
+    });
+
+    it("Should exist", function(){
+        $scope.serverUserPositionSuccess(testObject);
+    });
+
+    it("Should have the same value on $scope.userPositionRanking", function(){
+      $scope.serverUserPositionSuccess(testObject);
+      expect($scope.userPositionRanking).toEqual("dummy0");
+    });
+  });
+
+  describe("serverUserPositionError", function(){
+    var $scope, controller, testObject = [];
+
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller("UserCtrl", {
+        $scope: $scope
+      });
+    });
+
+    it("Should exist", function(){
+        $scope.serverUserPositionError("dummy");
+    });
   });
 
 });
