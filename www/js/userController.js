@@ -283,6 +283,7 @@ function($scope, $rootScope, $state, $ionicPopup, SignUp,LogInFactory, EditUser,
   }
 
   $scope.followDeputy = function(deputy) {
+    $scope.addExperience(50);
     var userId = $rootScope.currentUser.id;
     var deputyId = deputy.id;
     var data = {deputyId, userId, id: userId};
