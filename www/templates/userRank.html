@@ -1,7 +1,7 @@
 <ion-view view-title="Ranking">
-  <ion-content ng-init="getUserPositionRanking()">
+  <ion-content>
     <div class="card">
-      <div class="item item-avatar" ng-init="getUserRank()">
+      <div class="item item-avatar" ng-init="getUserPositionRanking()">
         <img src="{{currentUser.level.image_url}}">
         <h2>{{currentUser.nickname}}</h2>
         <p>Sua posição no ranking: {{userPositionRanking}}º</p>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="list">
+    <div class="list" ng-init="getUserRank()">
       <a collection-repeat="itemUser in users" class="item item-avatar item-icon-right">
         <img ng-src="{{itemUser.level.image_url}}">
         <i class="icon ion-ribbon-b" ng-if="itemUser == users[0]"></i>
